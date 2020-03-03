@@ -30,10 +30,10 @@ export const ReportChoice = observer(({ navigation }) => {
           Create service report
         </Text>
       </ImageBackground>
-      <Button
+     {/* <Button
         onPress={() => navigation.navigate("Login")}
         title="Back to login"
-      />
+      />*/}
     </SafeAreaView>
   );
 });

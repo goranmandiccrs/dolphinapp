@@ -1,5 +1,12 @@
 import { observer } from "mobx-react";
-import { Button, Image, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  Modal,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import { useMst } from "../state/RootModel";
@@ -13,15 +20,14 @@ import PhotoUpload from "react-native-photo-upload";
 export const ServiceReport = observer(({ navigation }) => {
   const {
     serviceReportForm: {
-      hideDatePicker,
-      hideTimePicker,
-      showDatePicker,
-      showTimePicker,
+      hideModal,
       isDatePickerVisible,
+      isModalVisible,
       isTimePickerVisible,
       onChange,
       onFocusDatePicker,
       onFocusTimePicker,
+      onSubmit,
       setName,
       reportDate,
       reportTime,
@@ -65,13 +71,24 @@ export const ServiceReport = observer(({ navigation }) => {
             onChange={onChange}
           />
         )}
-        <View style={styles.upload}>
-        </View>
+        <View style={styles.upload} />
       </View>
       <PhotoUpload photoPickerTitle={"Select photo"}>
-            <Upload />
-          <Picture />
+        <Upload />
+        <Picture />
       </PhotoUpload>
+      <Button title={"Submit"} onPress={onSubmit} />
+      <Modal animationType="slide" transparent={false} visible={isModalVisible}>
+        <View style={{ marginTop: 22 }}>
+          <View>
+            <Text>Successfully submitted!</Text>
+
+            <TouchableHighlight onPress={() => hideModal(navigation)}>
+              <Text>Back to home</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 });

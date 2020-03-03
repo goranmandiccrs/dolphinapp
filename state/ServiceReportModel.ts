@@ -8,6 +8,7 @@ export const ServiceReportModel = types
     note: "",
     isDatePickerVisible: false,
     isTimePickerVisible: false,
+    isModalVisible: false,
   })
   .views((self) => {
     return {
@@ -61,5 +62,12 @@ export const ServiceReportModel = types
           this.setReportTime(value);
         }
       },
+      onSubmit() {
+        self.isModalVisible = true;
+      },
+      hideModal(navigation) {
+        self.isModalVisible = false;
+        navigation.navigate("ReportChoice");
+      }
     };
   });
