@@ -1,4 +1,6 @@
 import { observer } from "mobx-react";
+import LinearGradient from "react-native-linear-gradient";
+
 import {
   Button,
   SafeAreaView,
@@ -6,6 +8,8 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  View,
+  ImageBackground,
 } from "react-native";
 
 //@ts-ignore
@@ -20,72 +24,89 @@ export const LoginScreen = observer(({ navigation }) => {
   } = useMst();
   return (
     <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}
-      />
-      <Logo />
-      <Text style={styles.baseText}>
-        <Text style={styles.titleText}>Welcome to our field report app.</Text>
-      </Text>
-      <Text>Enter your email address and password to access your account.</Text>
-      <TextInput
-        onChangeText={(text) => setEmail(text)}
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-      />
-      <TextInput
-        onChangeText={(text) => setPassword(text)}
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-      />
-      <Button onPress={() => navigation.navigate("ReportChoice")} title="Login" />
-      <Button onPress={() => {}} title="Contact us" />
+      <ImageBackground
+        source={require("../assets/login-bg.jpg")}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <View style={styles.container}>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}
+          />
+          <Logo style={styles.logo} />
+
+          <Text style={styles.titleText}>Welcome to our field report app.</Text>
+
+          <Text style={styles.baseText}>
+            Enter your email address and password to access your account.
+          </Text>
+
+          <TextInput
+            onChangeText={(text) => setEmail(text)}
+            style={styles.input}
+            placeholder="Email"
+          />
+          <TextInput
+            onChangeText={(text) => setPassword(text)}
+            style={styles.input}
+            placeholder="Password"
+          />
+          <Button
+            onPress={() => navigation.navigate("ReportChoice")}
+            // ViewComponent={LinearGradient}
+            // linearGradientProps={{
+            //   colors: ['red', 'pink'],
+            //   start: { x: 0, y: 0.5 },
+            //   end: { x: 1, y: 0.5 },
+            // }}
+            title="Login"
+          />
+          <Button onPress={() => {}} title="Contact us" color="#745FB8" />
+          {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 });
+
 const styles = StyleSheet.create({
-  logo: { marginTop: 50, width: "100%" },
-  baseText: {
-    fontFamily: "Cochin",
-    marginVertical: 20,
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: "bold",
+  container: {
+    padding: 20,
   },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
-  engine: {
-    position: "absolute",
-    right: 0,
+  logo: {
+    marginTop: 50,
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: 281,
+    width: "100%",
   },
-  body: {
-    backgroundColor: Colors.white,
+  titleText: {
+    fontSize: 40,
+    lineHeight: 48,
+    fontWeight: "bold",
+    letterSpacing: 0.41,
+    marginBottom: 48,
+    marginTop: 88,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  baseText: {
+    fontFamily: "Cochin",
+    fontSize: 20,
+    marginBottom: 40,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: Colors.black,
+  input: {
+    borderRadius: 8,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#D3D9EB",
+    padding: 12,
+    marginBottom: 8,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: "600",
-    padding: 4,
-    paddingRight: 12,
-    textAlign: "right",
+  linearGradient: {},
+  buttonText: {},
+  link: {
+    color: "#745FB8",
   },
 });

@@ -6,10 +6,12 @@ import {
   TextInput,
   TouchableHighlight,
   View,
+  StyleSheet,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import { useMst } from "../state/RootModel";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 //@ts-ignore
 import Upload from "../assets/camera.svg";
@@ -91,4 +93,51 @@ export const ServiceReport = observer(({ navigation }) => {
       </Modal>
     </>
   );
+});
+
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  scrollView: {
+    backgroundColor: Colors.lighter,
+  },
+  logo: { 
+    marginTop: 50, 
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: 281,
+    width: "100%" 
+  },
+  titleText: {
+    fontSize: 40,
+    lineHeight: 48,
+    fontWeight: "bold",
+    letterSpacing: 0.41,
+    marginBottom: 48,
+    marginTop: 88,
+  },
+  baseText: {
+    fontFamily: "Cochin",
+    fontSize: 20,
+    marginBottom: 40,
+  },
+  input: {
+    borderRadius: 8,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: '#D3D9EB',
+    padding: 12,
+    marginBottom: 8,
+  },
+  linearGradient: {
+
+  },
+  buttonText: {
+
+  },
+  link: {
+    color: "#745FB8",
+  }
 });

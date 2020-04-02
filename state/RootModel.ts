@@ -2,15 +2,33 @@ import { Instance, types } from "mobx-state-tree";
 import { createContext, useContext } from "react";
 import { LoginModel } from "./LoginModel";
 import { ServiceReportModel } from "./ServiceReportModel";
+import { MaintenanceReportModel } from "./MaintenanceReportModel";
+import { CleanlinessModel } from "./CleanlinessModel";
+import { ChemicalsModel } from "./ChemicalsModel";
 
 export const RootModel = types.model("Root", {
   loginForm: LoginModel,
   serviceReportForm: ServiceReportModel,
+  maintenanceReportForm: MaintenanceReportModel,
+  cleanlinessForm: CleanlinessModel,
+  chemicalsForm: ChemicalsModel,
 });
 
 export const rootStore = RootModel.create({
   loginForm: {},
   serviceReportForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  maintenanceReportForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  cleanlinessForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  chemicalsForm: {
     reportDate: new Date(),
     reportTime: new Date(),
   },
