@@ -10,6 +10,10 @@ import { ServiceReport } from "./screens/ServiceReport";
 import { MaintenanceReport } from "./screens/MaintenanceReport";
 import { Cleanliness } from "./screens/steps/Cleanliness";
 import { Chemicals } from "./screens/steps/Chemicals";
+import { Equipment } from "./screens/steps/Equipment";
+import { Overall } from "./screens/steps/Overall";
+import { Note } from "./screens/steps/Note";
+import { Signature } from "./screens/steps/Signature";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +28,10 @@ const App = () => {
           <Stack.Screen name="MaintenanceReport" component={MaintenanceReport} />
           <Stack.Screen name="Cleanliness" component={Cleanliness} />
           <Stack.Screen name="Chemicals" component={Chemicals} />
+          <Stack.Screen name="Equipment" component={Equipment} />
+          <Stack.Screen name="Overall" component={Overall} />
+          <Stack.Screen name="Note" component={Note} />
+          <Stack.Screen name="Signature" component={Signature} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

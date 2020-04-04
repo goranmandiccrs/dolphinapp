@@ -1,5 +1,4 @@
 import { observer } from "mobx-react";
-import LinearGradient from "react-native-linear-gradient";
 
 import {
   Button,
@@ -61,7 +60,7 @@ export const LoginScreen = observer(({ navigation }) => {
             // }}
             title="Login"
           />
-          <Button onPress={() => {}} title="Contact us" color="#745FB8" />
+          {/* <Button onPress={() => {}} title="Contact us" color="#745FB8" /> */}
           {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
         </View>
       </ImageBackground>

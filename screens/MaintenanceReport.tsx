@@ -9,10 +9,30 @@ import {
   SafeAreaView,
 } from "react-native";
 
+import RadioButton from '../components/RadioButton';
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
+
+const PROP = [
+	{
+		key: 'rainy',
+		text: 'Rainy',
+	},
+	{
+		key: 'Partly Cloudy',
+		text: 'Partly Cloudy',
+	},
+	{
+		key: 'Cloudy',
+		text: 'Cloudy',
+	},
+	{
+		key: 'Sunny',
+		text: 'Sunny',
+  },
+];
 
 export const MaintenanceReport = observer(({ navigation }) => {
   const {
@@ -90,6 +110,11 @@ export const MaintenanceReport = observer(({ navigation }) => {
             onChange={onChange}
           />
         )}
+
+      <View style={styles.radiosContainer}>
+        <Text style={styles.label}>Weather?</Text>
+          <RadioButton PROP={PROP} />
+        </View>
       </View>
 
       <Button title={"Next"} onPress={() => navigation.navigate("Cleanliness")} />
@@ -106,6 +131,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+    backgroundColor: "#EFEFF4",
   },
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -115,6 +141,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     fontWeight: "bold",
+    color: "#231D38",
   },
   input: {
     borderRadius: 8,
@@ -158,5 +185,12 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     marginRight: 16,
+  },
+  radiosContainer: {
+    // width: '100%',
+    // flexDirection: "column", 
+    // height: '50%',
+    // alignContent: "stretch",
+    // flexWrap: 'wrap'
   },
 });

@@ -28,10 +28,40 @@ export const Cleanliness = observer(({ navigation }) => {
       reportTime,
     },
   } = useMst();
-
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   
+  const [isEnabledMainPool, setIsEnabledMainPool] = useState(false);
+  const toggleSwitchMainPool = () => setIsEnabledMainPool(previousStateMainPool => !previousStateMainPool);
+
+  const [isEnabledSpaClarity, setIsEnabledSpaClarity] = useState(false);
+  const toggleSwitchSpaClarity = () => setIsEnabledSpaClarity(previousStateSpaClarity => !previousStateSpaClarity);
+
+  const [isEnabledPoolBottom, setIsEnabledPoolBottom] = useState(false);
+  const toggleSwitchPoolBottom = () => setIsEnabledPoolBottom(previousStatePoolBottom => !previousStatePoolBottom);
+
+  const [isEnabledSkimmer, setIsEnabledSkimmer] = useState(false);
+  const toggleSwitchSkimmer = () => setIsEnabledSkimmer(previousStateSkimmer => !previousStateSkimmer);
+
+  const [isEnabledBlow, setIsEnabledBlow] = useState(false);
+  const toggleSwitchBlow = () => setIsEnabledBlow(previousStateBlow => !previousStateBlow);
+
+  const [isEnabledPoolPump, setIsEnabledPoolPump] = useState(false);
+  const toggleSwitchPoolPump = () => setIsEnabledPoolPump(previousStatePoolPump => !previousStatePoolPump);
+
+  const [isEnabledPoolCleanliness, setIsEnabledPoolCleanliness] = useState(false);
+  const toggleSwitchPoolCleanliness = () => setIsEnabledPoolCleanliness(previousStatePoolCleanliness => !previousStatePoolCleanliness);
+
+
+  const [isEnabledSpaCleanliness, setIsEnabledSpaCleanliness] = useState(false);
+  const toggleSwitchSpaCleanliness = () => setIsEnabledSpaCleanliness(previousStateSpaCleanliness => !previousStateSpaCleanliness);
+  
+  const [isEnabledHairStrainer, setIsEnabledHairStrainer] = useState(false);
+  const toggleSwitchHairStrainer = () => setIsEnabledHairStrainer(previousStateHairStrainer => !previousStateHairStrainer);
+
+  const [isEnabledTileLine, setIsEnabledTileLine] = useState(false);
+  const toggleSwitchTileLine = () => setIsEnabledTileLine(previousStateTileLine => !previousStateTileLine);
+  
+
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -66,21 +96,21 @@ export const Cleanliness = observer(({ navigation }) => {
 
         <View style={[styles.flex, styles.switchWrapper]}>
         <Switch
-            trackColor={{ false: "#DADADA", true: "#745FB8" }}
-            thumbColor={isEnabled ? "#FFFFFF" : "#FFFFFF"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledMainPool ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchMainPool}
+            value={isEnabledMainPool}
           />
           <Text> Notes? </Text>
        </View>
 
-       <TextInput
-              style={styles.textArea}
-              placeholder="You can write your notes here"
-              onChangeText={(text) => setName(text)}
-              multiline={true}
-            />
+       { isEnabledMainPool && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
 
       </View>
 
@@ -113,21 +143,21 @@ export const Cleanliness = observer(({ navigation }) => {
 
         <View style={[styles.flex, styles.switchWrapper]}>
         <Switch
-            trackColor={{ false: "#DADADA", true: "#745FB8" }}
-            thumbColor={isEnabled ? "#FFFFFF" : "#FFFFFF"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledSpaClarity ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchSpaClarity}
+            value={isEnabledSpaClarity}
           />
           <Text> Notes? </Text>
        </View>
 
-       <TextInput
-              style={styles.textArea}
-              placeholder="You can write your notes here"
-              onChangeText={(text) => setName(text)}
-              multiline={true}
-            />
+       { isEnabledSpaClarity && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
 
       </View>
 
@@ -160,21 +190,350 @@ export const Cleanliness = observer(({ navigation }) => {
 
         <View style={[styles.flex, styles.switchWrapper]}>
         <Switch
-            trackColor={{ false: "#DADADA", true: "#745FB8" }}
-            thumbColor={isEnabled ? "#FFFFFF" : "#FFFFFF"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledPoolBottom ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchPoolBottom}
+            value={isEnabledPoolBottom}
           />
           <Text> Notes? </Text>
        </View>
 
-       <TextInput
-              style={styles.textArea}
-              placeholder="You can write your notes here"
+        { isEnabledPoolBottom && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+      
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Skimmer baskets clean:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
               onChangeText={(text) => setName(text)}
-              multiline={true}
             />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledSkimmer ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchSkimmer}
+            value={isEnabledSkimmer}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledSkimmer && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Blow pool deck area:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledBlow ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchBlow}
+            value={isEnabledBlow}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledBlow && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Pool pump area organized:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledPoolPump ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchPoolPump}
+            value={isEnabledPoolPump}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledPoolPump && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Main pool cleanliness:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledPoolCleanliness ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchPoolCleanliness}
+            value={isEnabledPoolCleanliness}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledPoolCleanliness && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Spa cleanliness:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledSpaCleanliness ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchSpaCleanliness}
+            value={isEnabledSpaCleanliness}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledSpaCleanliness && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Hair strainer basket clean:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledHairStrainer ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchHairStrainer}
+            value={isEnabledHairStrainer}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledHairStrainer && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}>
+      <Text style={styles.label}>Tile line clean:</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 1 to 5"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledTileLine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchTileLine}
+            value={isEnabledTileLine}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+        { isEnabledTileLine && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
 
       </View>
 
@@ -204,9 +563,9 @@ export const Cleanliness = observer(({ navigation }) => {
             onChange={onChange}
           />
         )}
+      <Button title={"Next"} onPress={() => navigation.navigate("Chemicals")} />
       </View>
 
-      <Button title={"Next"} onPress={() => navigation.navigate("Chemicals")} />
     </ScrollView>
   );
 });
@@ -220,6 +579,8 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+    paddingBottom: 40,
+    backgroundColor: "#EFEFF4",
   },
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -229,6 +590,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     fontWeight: "bold",
+    color: "#231D38",
   },
   input: {
     borderRadius: 8,

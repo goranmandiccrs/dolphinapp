@@ -5,6 +5,10 @@ import { ServiceReportModel } from "./ServiceReportModel";
 import { MaintenanceReportModel } from "./MaintenanceReportModel";
 import { CleanlinessModel } from "./CleanlinessModel";
 import { ChemicalsModel } from "./ChemicalsModel";
+import { EquipmentModel } from "./EquipmentModel";
+import { OverallModel } from "./OverallModel";
+import { NoteModel } from "./NoteModel";
+import { SignatureModel } from "./SignatureModel";
 
 export const RootModel = types.model("Root", {
   loginForm: LoginModel,
@@ -12,6 +16,10 @@ export const RootModel = types.model("Root", {
   maintenanceReportForm: MaintenanceReportModel,
   cleanlinessForm: CleanlinessModel,
   chemicalsForm: ChemicalsModel,
+  equipmentForm: EquipmentModel,
+  overallForm: OverallModel,
+  noteForm: NoteModel,
+  signatureForm: SignatureModel,
 });
 
 export const rootStore = RootModel.create({
@@ -29,6 +37,22 @@ export const rootStore = RootModel.create({
     reportTime: new Date(),
   },
   chemicalsForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  equipmentForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  overallForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  noteForm: {
+    reportDate: new Date(),
+    reportTime: new Date(),
+  },
+  signatureForm: {
     reportDate: new Date(),
     reportTime: new Date(),
   },

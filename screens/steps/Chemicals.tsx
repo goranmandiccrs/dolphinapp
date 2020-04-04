@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
 
+
 export const Chemicals = observer(({ navigation }) => {
   const {
     maintenanceReportForm: {
@@ -29,8 +30,20 @@ export const Chemicals = observer(({ navigation }) => {
     },
   } = useMst();
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [isEnabledChlorine, setIsEnabledChlorine] = useState(false);
+  const toggleSwitchChlorine = () => setIsEnabledChlorine(previousStateChlorine => !previousStateChlorine);
+
+  const [isEnabledPh, setIsEnabledPh] = useState(false);
+  const toggleSwitchPh = () => setIsEnabledPh(previousStatePh => !previousStatePh);
+  
+  const [isEnabledAlkalinity, setIsEnabledAlkalinity] = useState(false);
+  const toggleSwitchAlkalinity = () => setIsEnabledAlkalinity(previousStateAlkalinity => !previousStateAlkalinity);
+
+  const [isEnabledCalcium, setIsEnabledCalcium] = useState(false);
+  const toggleSwitchCalcium = () => setIsEnabledCalcium(previousStateCalcium => !previousStateCalcium);
+
+  const [isEnabledCya, setIsEnabledCya] = useState(false);
+  const toggleSwitchCya = () => setIsEnabledCya(previousStateCya => !previousStateCya);
   
   return (
     <ScrollView>
@@ -95,25 +108,329 @@ export const Chemicals = observer(({ navigation }) => {
 
         <View style={[styles.flex, styles.switchWrapper]}>
         <Switch
-            trackColor={{ false: "#DADADA", true: "#745FB8" }}
-            thumbColor={isEnabled ? "#FFFFFF" : "#FFFFFF"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledChlorine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchChlorine}
+            value={isEnabledChlorine}
           />
           <Text> Notes? </Text>
        </View>
 
-       <TextInput
-              style={styles.textArea}
-              placeholder="You can write your notes here"
-              onChangeText={(text) => setName(text)}
-              multiline={true}
-            />
+       { isEnabledChlorine && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
 
       </View>
 
+      <View style={styles.indicatorWithNotes}
+      >
+      <Text style={styles.labelLarge}>PH</Text>
 
+      <Text style={styles.label}>Main</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="7.0 to 8.0"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+        
+      <Text style={styles.label}>Spa</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="7.0 to 8.0"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledPh ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchPh}
+            value={isEnabledPh}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+       { isEnabledPh && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}
+      >
+      <Text style={styles.labelLarge}>Alkalinity</Text>
+
+      <Text style={styles.label}>Main</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 20 to 120"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+        
+      <Text style={styles.label}>Spa</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 20 to 120"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledAlkalinity ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchAlkalinity}
+            value={isEnabledAlkalinity}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+       { isEnabledAlkalinity && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}
+      >
+      <Text style={styles.labelLarge}>Calcium</Text>
+
+      <Text style={styles.label}>Main</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 150 to 900"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+        
+      <Text style={styles.label}>Spa</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 150 to 900"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledCalcium ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchCalcium}
+            value={isEnabledCalcium}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+       { isEnabledCalcium && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.indicatorWithNotes}
+      >
+      <Text style={styles.labelLarge}>CTA</Text>
+
+      <Text style={styles.label}>Main</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 5 to 80"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+        
+      <Text style={styles.label}>Spa</Text>
+        <View>
+          <View style={styles.flex}>
+            <TextInput
+              style={styles.inputIndicator}
+              placeholder="Grade 5 to 80"
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={[styles.flex, styles.buttonGroup]}>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderLeft]}
+              >
+                <Text style={styles.indicatorText}> - </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                onPress={onSubmit}
+                style={[styles.indicator, styles.indicatorBorderRight]}
+              >
+                <Text style={styles.indicatorText}> + </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+        <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={isEnabledCya ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSwitchCya}
+            value={isEnabledCya}
+          />
+          <Text> Notes? </Text>
+       </View>
+
+       { isEnabledCya && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setName(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+ 
         
 
         {isDatePickerVisible && (
@@ -139,9 +456,11 @@ export const Chemicals = observer(({ navigation }) => {
             onChange={onChange}
           />
         )}
+      
+      <Button title={"Next"} onPress={() => navigation.navigate("Equipment")}/>
+      
       </View>
 
-      <Button title={"Next"} onPress={onSubmit} />
     </ScrollView>
   );
 });
@@ -155,6 +474,8 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+    paddingBottom: 40,
+    backgroundColor: "#EFEFF4",
   },
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -164,6 +485,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     fontWeight: "bold",
+    color: "#231D38",
   },
   labelLarge: {
     fontSize: 17,
