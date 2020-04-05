@@ -429,33 +429,6 @@ export const Chemicals = observer(({ navigation }) => {
         />}
 
       </View>
-
- 
-        
-
-        {isDatePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportDate}
-            //@ts-ignore
-            mode={"date"}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-        {isTimePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportTime}
-            //@ts-ignore
-            mode={"time"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
       
       <Button title={"Next"} onPress={() => navigation.navigate("Equipment")}/>
       
@@ -475,6 +448,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     paddingBottom: 40,
+    paddingTop: 55,
     backgroundColor: "#EFEFF4",
   },
   scrollView: {

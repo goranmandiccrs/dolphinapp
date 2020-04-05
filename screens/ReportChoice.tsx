@@ -15,7 +15,6 @@ export const ReportChoice = observer(({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.container} >
-      <ScrollView contentInsetAdjustmentBehavior="automatic" />
 
         <Text style={styles.title}>Choose the report
               you would like to create:</Text>
@@ -47,15 +46,13 @@ export const ReportChoice = observer(({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    paddingTop: 40,
   },
   title: {
     fontSize: 22,
-    lineHeight: 22,
-    fontWeight: "bold",
+    lineHeight: 28,
+    fontFamily: "AcuminPro-Bold",
     marginBottom: 14,
-  },
-  scrollView: {
-    backgroundColor: Colors.lighter,
   },
   reportBox: {
     display: "flex",
@@ -64,6 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     height: 275,
     marginBottom: 26,
+    overflow: "hidden",
+    borderRadius: 10,
   },
   reportTitle: {
     fontSize: 28,

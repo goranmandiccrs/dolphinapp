@@ -1,9 +1,7 @@
 import { observer } from "mobx-react";
 
 import {
-  Button,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -17,6 +15,8 @@ import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
 
+import LinearGradient from 'react-native-linear-gradient';
+
 export const LoginScreen = observer(({ navigation }) => {
   const {
     loginForm: { setEmail, setPassword },
@@ -28,13 +28,10 @@ export const LoginScreen = observer(({ navigation }) => {
         style={{ width: "100%", height: "100%" }}
       >
         <View style={styles.container}>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
-          />
           <Logo style={styles.logo} />
 
-          <Text style={styles.titleText}>Welcome to our field report app.</Text>
+          <Text style={styles.titleText}>Welcome to our 
+          field report app.</Text>
 
           <Text style={styles.baseText}>
             Enter your email address and password to access your account.
@@ -50,7 +47,7 @@ export const LoginScreen = observer(({ navigation }) => {
             style={styles.input}
             placeholder="Password"
           />
-          <Button
+          {/* <Button
             onPress={() => navigation.navigate("ReportChoice")}
             // ViewComponent={LinearGradient}
             // linearGradientProps={{
@@ -59,7 +56,19 @@ export const LoginScreen = observer(({ navigation }) => {
             //   end: { x: 1, y: 0.5 },
             // }}
             title="Login"
-          />
+          /> */}
+
+          <LinearGradient 
+                start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+                colors={['#5B70B8', '#7360B8']} 
+                style={styles.linearGradient}
+              >
+        
+            <Text style={styles.buttonText} onPress={() => navigation.navigate("ReportChoice")}>
+              Login
+            </Text>
+          </LinearGradient>
+
           {/* <Button onPress={() => {}} title="Contact us" color="#745FB8" /> */}
           {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
         </View>
@@ -85,15 +94,31 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 40,
     lineHeight: 48,
-    fontWeight: "bold",
-    letterSpacing: 0.41,
-    marginBottom: 48,
+    fontFamily: "AcuminPro-Bold",
+    letterSpacing: -0.41,
+    marginBottom: 10,
     marginTop: 88,
   },
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
   baseText: {
-    fontFamily: "Cochin",
+    fontFamily: "AcuminPro-Light",
     fontSize: 20,
     marginBottom: 40,
+    letterSpacing: 0.38,
   },
   input: {
     borderRadius: 8,
@@ -103,8 +128,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 8,
   },
-  linearGradient: {},
-  buttonText: {},
+
   link: {
     color: "#745FB8",
   },

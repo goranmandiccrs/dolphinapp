@@ -536,33 +536,6 @@ export const Cleanliness = observer(({ navigation }) => {
         />}
 
       </View>
-
-
-        
-
-        {isDatePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportDate}
-            //@ts-ignore
-            mode={"date"}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-        {isTimePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportTime}
-            //@ts-ignore
-            mode={"time"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
       <Button title={"Next"} onPress={() => navigation.navigate("Chemicals")} />
       </View>
 

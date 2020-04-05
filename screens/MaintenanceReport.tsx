@@ -11,6 +11,7 @@ import {
 
 import RadioButton from '../components/RadioButton';
 import DateTimePicker from "@react-native-community/datetimepicker";
+import LinearGradient from 'react-native-linear-gradient';
 import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
@@ -39,9 +40,12 @@ export const MaintenanceReport = observer(({ navigation }) => {
     maintenanceReportForm: {
       isDatePickerVisible,
       isTimePickerVisible,
+      onFocusDatePicker,
+      onFocusTimePicker,
       onChange,
       onSubmit,
       setName,
+      time,
       reportDate,
       reportTime,
     },
@@ -63,7 +67,7 @@ export const MaintenanceReport = observer(({ navigation }) => {
         />
 
         <Text style={styles.label}>Number of bathers</Text>
-        <View>
+        <View style={{marginBottom: 35}}>
           <View style={styles.flex}>
             <TextInput
               style={styles.inputIndicator}
@@ -87,37 +91,32 @@ export const MaintenanceReport = observer(({ navigation }) => {
           </View>
         </View>
 
-        {isDatePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportDate}
-            //@ts-ignore
-            mode={"date"}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-        {isTimePickerVisible && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={reportTime}
-            //@ts-ignore
-            mode={"time"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
+        <Text style={styles.label}>Date & Time</Text>
+        <Text style={[styles.input, {color: "rgba(85, 87, 94, 0.4)", borderRadius: 5, }]} onPress={onFocusDatePicker}>{reportDate.toDateString()}, {time}</Text>
+        
+        
 
-      <View style={styles.radiosContainer}>
+
+      <View style={[styles.radiosContainer, {marginBottom:87}]}>
         <Text style={styles.label}>Weather?</Text>
           <RadioButton PROP={PROP} />
         </View>
+
+
+      {/* <Button title={"Next"} onPress={() => navigation.navigate("Cleanliness")}/> */}
+
+      <LinearGradient 
+        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+        colors={['#5B70B8', '#7360B8']} 
+        style={styles.linearGradient}
+      >
+        
+        <Text style={styles.buttonText} onPress={() => navigation.navigate("Cleanliness")}>
+          Next
+        </Text>
+      </LinearGradient>
       </View>
 
-      <Button title={"Next"} onPress={() => navigation.navigate("Cleanliness")} />
     </SafeAreaView>
   );
 });
@@ -131,16 +130,31 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+    paddingTop: 55,
+    paddingBottom: 37,
     backgroundColor: "#EFEFF4",
   },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
+  linearGradient: {
+    // flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
   label: {
     fontSize: 14,
     letterSpacing: -0.41,
     lineHeight: 22,
-    fontWeight: "bold",
+    fontFamily: "AcuminPro-Bold",
     color: "#231D38",
   },
   input: {
@@ -150,6 +164,7 @@ const styles = StyleSheet.create({
     borderColor: "#D3D9EB",
     padding: 12,
     marginBottom: 35,
+    overflow: "hidden",
   },
   inputIndicator: {
     borderRadius: 8,

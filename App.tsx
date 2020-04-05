@@ -22,8 +22,8 @@ const App = () => {
     <Provider value={rootStore}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="ReportChoice" component={ReportChoice} />
+          <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
+          <Stack.Screen options={{headerShown: false}} name="ReportChoice" component={ReportChoice} />
           <Stack.Screen name="ServiceReport" component={ServiceReport} />
           <Stack.Screen name="MaintenanceReport" component={MaintenanceReport} />
           <Stack.Screen name="Cleanliness" component={Cleanliness} />

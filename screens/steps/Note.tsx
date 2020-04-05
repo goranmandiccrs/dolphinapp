@@ -40,7 +40,7 @@ export const Note = observer(({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.label}>Technician name</Text>
+          <Text style={styles.label}>Leave a Note</Text>
           <TextInput
             style={styles.textArea}
             onChangeText={(text) => setName(text)}
