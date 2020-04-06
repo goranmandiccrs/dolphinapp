@@ -19,10 +19,10 @@ import { useMst } from "../state/RootModel";
 
 export const LoginScreen = observer(({ navigation }) => {
   const {
-    loginForm: { setEmail, setPassword },
+    loginForm: { setEmail, setPassword, result, submitLogin, password, email },
   } = useMst();
   return (
-    <SafeAreaView>
+    <ScrollView>
       <ImageBackground
         source={require("../assets/login-bg.jpg")}
         style={{ width: "100%", height: "100%" }}
@@ -35,6 +35,7 @@ export const LoginScreen = observer(({ navigation }) => {
           <Logo style={styles.logo} />
 
           <Text style={styles.titleText}>Welcome to our field report app.</Text>
+          <Text style={styles.titleText}>{result}</Text>
 
           <Text style={styles.baseText}>
             Enter your email address and password to access your account.
@@ -51,7 +52,8 @@ export const LoginScreen = observer(({ navigation }) => {
             placeholder="Password"
           />
           <Button
-            onPress={() => navigation.navigate("ReportChoice")}
+            onPress={() => submitLogin(email, password)}
+            /*navigation.navigate("ReportChoice")*/
             // ViewComponent={LinearGradient}
             // linearGradientProps={{
             //   colors: ['red', 'pink'],
@@ -64,7 +66,7 @@ export const LoginScreen = observer(({ navigation }) => {
           {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 
