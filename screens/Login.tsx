@@ -19,7 +19,15 @@ import { useMst } from "../state/RootModel";
 
 export const LoginScreen = observer(({ navigation }) => {
   const {
-    loginForm: { setEmail, setPassword, result, submitLogin, password, email },
+    loginForm: {
+      setEmail,
+      setPassword,
+      result,
+      submitLogin,
+      password,
+      email,
+      setResult,
+    },
   } = useMst();
   return (
     <ScrollView>
@@ -52,14 +60,15 @@ export const LoginScreen = observer(({ navigation }) => {
             placeholder="Password"
           />
           <Button
-            onPress={() => submitLogin(email, password)}
-            /*navigation.navigate("ReportChoice")*/
-            // ViewComponent={LinearGradient}
-            // linearGradientProps={{
-            //   colors: ['red', 'pink'],
-            //   start: { x: 0, y: 0.5 },
-            //   end: { x: 1, y: 0.5 },
-            // }}
+            onPress={() =>
+              submitLogin(email, password)
+                .then(() => {
+                  navigation.navigate("ReportChoice");
+                })
+                .catch((e) => {
+                  setResult(e);
+                })
+            }
             title="Login"
           />
           {/* <Button onPress={() => {}} title="Contact us" color="#745FB8" /> */}

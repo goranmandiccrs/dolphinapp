@@ -1,12 +1,15 @@
 import { types } from "mobx-state-tree";
-import { Alert } from "react-native";
 import { fetch } from "whatwg-fetch";
+import { headers, URLs } from "./URLs";
 
 export const LoginModel = types
   .model("Login", {
-    email: "",
-    password: "",
+/*    email: "",
+    password: "",*/
+    email: "technician1@demo.com",
+    password: "demo",
     result: "",
+    token: "",
   })
   .actions((self) => {
     return {
@@ -20,34 +23,30 @@ export const LoginModel = types
       setPassword(password: string) {
         self.password = password;
       },
+      setToken(token: string): void {
+        self.token = token;
+      },
       submitLogin(email, password) {
-        /*const random = Math.random();
-        const that = this;
         return new Promise((resolve, reject) => {
-          if (random > 0.5) {
-            setTimeout(() => {
-              that.setResult("Success");
-              resolve();
-            }, 1000);
-          } else {
-            setTimeout(() => {
-              that.setResult("Failde");
-              reject();
-            }, 1000);
-          }
-        });*/
-        const that = this;
-        fetch("/users.html", {
-          method: "POST",
-          body: {
-            email,
-            password,
-          },
-        })
-          .then(() => {})
-          .catch(() => {
-            that.setResult("Failed");
+          fetch(URLs.login, {
+            headers,
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          }).then((response) => {
+            response.json().then((result) => {
+              if (!result.error && result.token) {
+                this.setToken(result.token);
+                console.log(self.token);
+                resolve();
+              } else {
+                reject(result.error.msg);
+              }
+            });
           });
+        });
       },
     };
   });
