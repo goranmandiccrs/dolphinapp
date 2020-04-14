@@ -46,7 +46,7 @@ export const MaintenanceReport = observer(({ navigation }) => {
       reportTime,
       setWeather,
       time,
-      weatherOptions,
+      weatherRadioGroup,
     },
   } = useMst();
 
@@ -101,8 +101,8 @@ export const MaintenanceReport = observer(({ navigation }) => {
         <View style={[styles.radiosContainer, { marginBottom: 87 }]}>
           <Text style={styles.label}>Weather?</Text>
           <RadioButton
-            options={weatherOptions.options}
-            radioGroup={weatherOptions}
+            options={weatherRadioGroup.options}
+            radioGroup={weatherRadioGroup}
           />
         </View>
 

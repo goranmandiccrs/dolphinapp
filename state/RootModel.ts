@@ -31,7 +31,7 @@ export const rootStore = RootModel.create({
   maintenanceReportForm: {
     reportDate: new Date(),
     reportTime: new Date(),
-    weatherOptions: {
+    weatherRadioGroup: {
       options: [
         {
           text: "Rainy",

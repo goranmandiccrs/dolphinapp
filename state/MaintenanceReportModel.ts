@@ -9,7 +9,7 @@ export const MaintenanceReportModel = types
     reportDate: types.Date,
     reportTime: types.Date,
     setWeather: "",
-    weatherOptions: RadioGroupModel,
+    weatherRadioGroup: RadioGroupModel,
   })
   .views((self) => {
     return {
