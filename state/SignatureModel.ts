@@ -3,8 +3,6 @@ import { types } from "mobx-state-tree";
 export const SignatureModel = types
   .model("Login", {
     poolName: "",
-    reportDate: types.Date,
-    reportTime: types.Date,
     note: "",
     isDatePickerVisible: false,
     isTimePickerVisible: false,
@@ -12,9 +10,7 @@ export const SignatureModel = types
   })
   .views((self) => {
     return {
-      get time() {
-        return `${self.reportTime.getHours()}:${self.reportTime.getMinutes()}`;
-      },
+
     };
   })
   .actions((self) => {
@@ -22,12 +18,6 @@ export const SignatureModel = types
       setName(poolName: string) {
         // Alert.alert(poolName);
         self.poolName = poolName;
-      },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
-      },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
       },
       setNote(note: string) {
         self.note = note;
@@ -52,16 +42,7 @@ export const SignatureModel = types
         event.preventDefault();
         this.showTimePicker();
       },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
-      },
+
       onSubmit() {
         self.isModalVisible = true;
       },

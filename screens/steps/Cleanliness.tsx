@@ -1,12 +1,10 @@
 import { observer } from "mobx-react";
 import {
   StyleSheet,
-  Button,
   Text,
   TextInput,
   TouchableHighlight,
   View,
-  SafeAreaView,
   ScrollView,
   Switch,
 } from "react-native";
@@ -39,12 +37,14 @@ export const Cleanliness = observer(({ navigation }) => {
       setHairStrainerAdditional,
       setTileLine,
       setTileLineAdditional,
-
-
+      increaseNumberValue,
+      decreaseNumberValue,
       onSubmit,
+      poolClarity,
+      spaClarity
     },
   } = useMst();
-  
+
   const [isEnabledMainPool, setIsEnabledMainPool] = useState(false);
   const toggleSwitchMainPool = () => setIsEnabledMainPool(previousStateMainPool => !previousStateMainPool);
 
@@ -69,20 +69,20 @@ export const Cleanliness = observer(({ navigation }) => {
 
   const [isEnabledSpaCleanliness, setIsEnabledSpaCleanliness] = useState(false);
   const toggleSwitchSpaCleanliness = () => setIsEnabledSpaCleanliness(previousStateSpaCleanliness => !previousStateSpaCleanliness);
-  
+
   const [isEnabledHairStrainer, setIsEnabledHairStrainer] = useState(false);
   const toggleSwitchHairStrainer = () => setIsEnabledHairStrainer(previousStateHairStrainer => !previousStateHairStrainer);
 
   const [isEnabledTileLine, setIsEnabledTileLine] = useState(false);
   const toggleSwitchTileLine = () => setIsEnabledTileLine(previousStateTileLine => !previousStateTileLine);
-  
+
 
 
   return (
     <ScrollView>
       <View style={styles.container}>
 
-      
+
       <View style={styles.indicatorWithNotes}>
       <Text style={styles.label}>Main pool clarity</Text>
         <View>
@@ -90,18 +90,19 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setPoolClarity(text)}
+              onChangeText={(text) => setPoolClarity(parseInt(text))}
+              value={poolClarity?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={(onSubmit)}
+                onPress={() => decreaseNumberValue("poolClarity", 1)}
                 style={[styles.indicator, styles.indicatorBorderLeft]}
               >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={(onSubmit)}
+                onPress={() => increaseNumberValue("poolClarity", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
                 <Text style={styles.indicatorText}> + </Text>
@@ -137,7 +138,8 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setSpaClarity(text)}
+              value={spaClarity?.toString()}
+              onChangeText={(text) => setSpaClarity(parseInt(text))}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -223,7 +225,7 @@ export const Cleanliness = observer(({ navigation }) => {
         />}
 
       </View>
-      
+
       <View style={styles.indicatorWithNotes}>
       <Text style={styles.label}>Skimmer baskets clean:</Text>
         <View>
@@ -552,13 +554,13 @@ export const Cleanliness = observer(({ navigation }) => {
         />}
 
       </View>
-      <LinearGradient 
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-            colors={['#5B70B8', '#7360B8']} 
+      <LinearGradient
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+            colors={['#5B70B8', '#7360B8']}
             style={styles.linearGradient}
           >
-    
-        <Text style={styles.buttonText} 
+
+        <Text style={styles.buttonText}
           onPress={() => navigation.navigate("Chemicals")}
         >
           Next

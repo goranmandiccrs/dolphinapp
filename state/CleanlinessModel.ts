@@ -2,10 +2,10 @@ import { types } from "mobx-state-tree";
 
 export const CleanlinessModel = types
   .model("Login", {
-    poolClarity: "",
+    poolClarity: types.maybeNull(types.number),
     poolClarityAdditional: "",
 
-    spaClarity: "",
+    spaClarity: types.maybeNull(types.number),
     spaClarityAdditional: "",
 
     poolBottomVacuumed: "",
@@ -34,20 +34,27 @@ export const CleanlinessModel = types
   })
   .actions((self) => {
     return {
-      setPoolClarity(poolClarity: string) {
+      increaseNumberValue(value, maxValue): void {
+        self[value] = Math.min(self[value] + 1, maxValue);
+      },
+      decreaseNumberValue(value, minValue): void {
+        self[value] = Math.max(self[value] - 1, minValue);
+      },
+      setPoolClarity(poolClarity: number) {
         self.poolClarity = poolClarity;
       },
       setPoolClarityAdditional(poolClarityAdditional: string) {
         self.poolClarityAdditional = poolClarityAdditional;
+        console.log(self.poolClarityAdditional);
       },
 
-      setSpaClarity(spaClarity: string) {
+      setSpaClarity(spaClarity: number) {
         self.spaClarity = spaClarity;
       },
       setSpaClarityAdditional(spaClarityAdditional: string) {
         self.spaClarityAdditional = spaClarityAdditional;
       },
-      
+
       setPoolBottomVacuumed(poolBottomVacuumed: string) {
         self.poolBottomVacuumed = poolBottomVacuumed;
       },
@@ -66,45 +73,39 @@ export const CleanlinessModel = types
       setBlowPoolDeckAdditional(blowPoolDeckAdditional: string) {
         self.blowPoolDeckAdditional = blowPoolDeckAdditional;
       },
-
       setPoolPump(poolPump: string) {
         self.poolPump = poolPump;
       },
       setPoolPumpAdditional(poolPumpAdditional: string) {
         self.poolPumpAdditional = poolPumpAdditional;
       },
-
       setMainPoolCleanliness(mainPoolCleanliness: string) {
         self.mainPoolCleanliness = mainPoolCleanliness;
       },
       setMainPoolCleanlinessAdditional(mainPoolCleanlinessAdditional: string) {
         self.mainPoolCleanlinessAdditional = mainPoolCleanlinessAdditional;
       },
-      
       setSpaCleanliness(spaCleanliness: string) {
         self.spaCleanliness = spaCleanliness;
       },
       setSpaCleanlinessAdditional(spaCleanlinessAdditional: string) {
         self.spaCleanlinessAdditional = spaCleanlinessAdditional;
       },
-
       setHairStrainer(hairStrainer: string) {
         self.hairStrainer = hairStrainer;
       },
       setHairStrainerAdditional(hairStrainerAdditional: string) {
         self.hairStrainerAdditional = hairStrainerAdditional;
       },
-      
       setTileLine(tileLine: string) {
         self.tileLine = tileLine;
       },
       setTileLineAdditional(tileLineAdditional: string) {
         self.tileLineAdditional = tileLineAdditional;
       },
-     
       onSubmit() {
-        
+
       },
-      
+
     };
   });

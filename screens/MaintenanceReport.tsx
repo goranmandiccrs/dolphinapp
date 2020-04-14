@@ -7,31 +7,32 @@ import {
   TouchableHighlight,
   View,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 
-import RadioButton from '../components/RadioButton';
+import RadioButton from "../components/RadioGroup";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from "react-native-linear-gradient";
 import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
 
 const PROP = [
-	{
-		key: 'rainy',
-		text: 'Rainy',
-	},
-	{
-		key: 'Partly Cloudy',
-		text: 'Partly Cloudy',
-	},
-	{
-		key: 'Cloudy',
-		text: 'Cloudy',
-	},
-	{
-		key: 'Sunny',
-		text: 'Sunny',
+  {
+    key: "rainy",
+    text: "Rainy",
+  },
+  {
+    key: "Partly Cloudy",
+    text: "Partly Cloudy",
+  },
+  {
+    key: "Cloudy",
+    text: "Cloudy",
+  },
+  {
+    key: "Sunny",
+    text: "Sunny",
   },
 ];
 
@@ -45,11 +46,12 @@ export const MaintenanceReport = observer(({ navigation }) => {
       reportTime,
       setWeather,
       time,
+      weatherOptions,
     },
   } = useMst();
 
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.container}>
         <Text style={styles.label}>Pool Name / Address</Text>
         <TextInput
@@ -64,7 +66,7 @@ export const MaintenanceReport = observer(({ navigation }) => {
         />
 
         <Text style={styles.label}>Number of bathers</Text>
-        <View style={{marginBottom: 35}}>
+        <View style={{ marginBottom: 35 }}>
           <View style={styles.flex}>
             <TextInput
               style={styles.inputIndicator}
@@ -87,32 +89,38 @@ export const MaintenanceReport = observer(({ navigation }) => {
         </View>
 
         <Text style={styles.label}>Date & Time</Text>
-        <Text style={[styles.input, {color: "rgba(85, 87, 94, 0.4)", borderRadius: 5, }]}>{reportDate.toDateString()}, {time}</Text>
-        
-        
+        <Text
+          style={[
+            styles.input,
+            { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
+          ]}
+        >
+          {reportDate.toDateString()}, {time}
+        </Text>
 
-
-      <View style={[styles.radiosContainer, {marginBottom:87}]}>
-        <Text style={styles.label}>Weather?</Text>
-          <RadioButton 
-          // onChangeText={(text) => setWeather(text)}
-          PROP={PROP} />
+        <View style={[styles.radiosContainer, { marginBottom: 87 }]}>
+          <Text style={styles.label}>Weather?</Text>
+          <RadioButton
+            options={weatherOptions.options}
+            radioGroup={weatherOptions}
+          />
         </View>
 
-
-      <LinearGradient 
-        start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-        colors={['#5B70B8', '#7360B8']} 
-        style={styles.linearGradient}
-      >
-        
-        <Text style={styles.buttonText} onPress={() => navigation.navigate("Cleanliness")}>
-          Next
-        </Text>
-      </LinearGradient>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={["#5B70B8", "#7360B8"]}
+          style={styles.linearGradient}
+        >
+          <Text
+            style={styles.buttonText}
+            onPress={() => navigation.navigate("Cleanliness")}
+          >
+            Next
+          </Text>
+        </LinearGradient>
       </View>
-
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 
@@ -140,10 +148,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
+    color: "#ffffff",
+    backgroundColor: "transparent",
   },
   label: {
     fontSize: 14,
@@ -198,7 +206,7 @@ const styles = StyleSheet.create({
   },
   radiosContainer: {
     // width: '100%',
-    // flexDirection: "column", 
+    // flexDirection: "column",
     // height: '50%',
     // alignContent: "stretch",
     // flexWrap: 'wrap'

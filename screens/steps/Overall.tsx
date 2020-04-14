@@ -11,7 +11,7 @@ import {
   Switch,
 } from "react-native";
 
-import RadioButton from '../../components/RadioButton';
+import RadioButton from '../../components/RadioGroup';
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -54,7 +54,7 @@ export const Overall = observer(({ navigation }) => {
 
   const [isEnabledGuages, setIsEnabledGuages] = useState(false);
   const toggleSwitchGuages = () => setIsEnabledGuages(previousStateGuages => !previousStateGuages);
-  
+
   const [isEnabledHamzat, setIsEnabledHamzat] = useState(false);
   const toggleSwitchHamzat = () => setIsEnabledHamzat(previousStateHamzat => !previousStateHamzat);
 
@@ -66,21 +66,21 @@ export const Overall = observer(({ navigation }) => {
 
   const [isEnabledFilter, setIsEnabledFilter] = useState(false);
   const toggleSwitchFilter = () => setIsEnabledFilter(previousStateFilter => !previousStateFilter);
-  
+
   const [isEnabledCartridges, setIsEnabledCartridges] = useState(false);
   const toggleSwitchCartridges = () => setIsEnabledCartridges(previousStateCartridges => !previousStateCartridges);
-  
+
   return (
     <ScrollView>
       <View style={styles.container}>
 
-      
+
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>Chlorinator opperational?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setChlorinatorOperational(text)}
             />
           </View>
@@ -109,9 +109,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>All guages working?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setGagues(text)}
             />
           </View>
@@ -140,9 +140,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>HAMZAT kit?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setHamzat(text)}
             />
           </View>
@@ -171,9 +171,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>MSDS Sheet?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setMsds(text)}
             />
           </View>
@@ -202,9 +202,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>Water leak detection?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setWaterLeak(text)}
             />
           </View>
@@ -233,9 +233,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>Filter Backwashed?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setFilterBackwashed(text)}
             />
           </View>
@@ -264,9 +264,9 @@ export const Overall = observer(({ navigation }) => {
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>Cartridges Washed?</Text>
-          
+
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} 
+            <RadioButton PROP={PROP}
               onValueChange={(text) => setCartrigesWashed(text)}
             />
           </View>
@@ -292,14 +292,14 @@ export const Overall = observer(({ navigation }) => {
 
       </View>
 
-      
-      <LinearGradient 
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-            colors={['#5B70B8', '#7360B8']} 
+
+      <LinearGradient
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+            colors={['#5B70B8', '#7360B8']}
             style={styles.linearGradient}
           >
-    
-        <Text style={styles.buttonText} 
+
+        <Text style={styles.buttonText}
           onPress={() => navigation.navigate("Note")}
         >
           Next
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
   radioNotes: {
     marginBottom: 35,
   },
-  
+
   linearGradient: {
     marginTop: 31,
     paddingLeft: 15,

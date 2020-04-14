@@ -55,7 +55,6 @@ export const ServiceReportModel = types
       onChange(event, value) {
         this.hideDatePicker();
         this.hideTimePicker();
-        console.log(value);
         if (self.isDatePickerVisible) {
           this.setReportDate(value);
         } else {

@@ -31,30 +31,30 @@ export const rootStore = RootModel.create({
   maintenanceReportForm: {
     reportDate: new Date(),
     reportTime: new Date(),
+    weatherOptions: {
+      options: [
+        {
+          text: "Rainy",
+        },
+        {
+          text: "Partly Cloudy",
+        },
+        {
+          text: "Cloudy",
+        },
+        {
+          text: "Sunny",
+        },
+      ],
+      selectedOption: "Rainy",
+    },
   },
-  cleanlinessForm: {
-    
-  },
-  chemicalsForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
-  },
-  equipmentForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
-  },
-  overallForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
-  },
-  noteForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
-  },
-  signatureForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
-  },
+  cleanlinessForm: {},
+  chemicalsForm: {},
+  equipmentForm: {},
+  overallForm: {},
+  noteForm: {},
+  signatureForm: {},
 });
 
 export type RootInstance = Instance<typeof RootModel>;

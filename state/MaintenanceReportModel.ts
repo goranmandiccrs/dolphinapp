@@ -1,4 +1,5 @@
 import { types } from "mobx-state-tree";
+import {RadioGroupModel} from "../components/RadioGroupModel";
 
 export const MaintenanceReportModel = types
   .model("Login", {
@@ -8,6 +9,7 @@ export const MaintenanceReportModel = types
     reportDate: types.Date,
     reportTime: types.Date,
     setWeather: "",
+    weatherOptions: RadioGroupModel,
   })
   .views((self) => {
     return {

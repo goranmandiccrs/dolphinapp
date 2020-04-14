@@ -39,7 +39,6 @@ export const LoginModel = types
             response.json().then((result) => {
               if (!result.error && result.token) {
                 this.setToken(result.token);
-                console.log(self.token);
                 resolve();
               } else {
                 reject(result.error.msg);
