@@ -11,21 +11,37 @@ import {
   Switch,
 } from "react-native";
 
-import DateTimePicker from "@react-native-community/datetimepicker";
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
 
 export const Cleanliness = observer(({ navigation }) => {
   const {
-    maintenanceReportForm: {
-      isDatePickerVisible,
-      isTimePickerVisible,
-      onChange,
+    cleanlinessForm: {
+      setPoolClarity,
+      setPoolClarityAdditional,
+      setSpaClarity,
+      setSpaClarityAdditional,
+      setPoolBottomVacuumed,
+      setPoolBottomVacuumedAdditional,
+      setSkimmer,
+      setSkimmerAdditional,
+      setBlowPoolDeck,
+      setBlowPoolDeckAdditional,
+      setPoolPump,
+      setPoolPumpAdditional,
+      setMainPoolCleanliness,
+      setMainPoolCleanlinessAdditional,
+      setSpaCleanliness,
+      setSpaCleanlinessAdditional,
+      setHairStrainer,
+      setHairStrainerAdditional,
+      setTileLine,
+      setTileLineAdditional,
+
+
       onSubmit,
-      setName,
-      reportDate,
-      reportTime,
     },
   } = useMst();
   
@@ -74,18 +90,18 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setPoolClarity(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={(onSubmit)}
                 style={[styles.indicator, styles.indicatorBorderLeft]}
               >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={(onSubmit)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
                 <Text style={styles.indicatorText}> + </Text>
@@ -108,7 +124,7 @@ export const Cleanliness = observer(({ navigation }) => {
        { isEnabledMainPool && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPoolClarityAdditional(text)}
           multiline={true}
         />}
 
@@ -121,7 +137,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setSpaClarity(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -155,7 +171,7 @@ export const Cleanliness = observer(({ navigation }) => {
        { isEnabledSpaClarity && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setSpaClarityAdditional(text)}
           multiline={true}
         />}
 
@@ -168,7 +184,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setPoolBottomVacuumed(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -202,7 +218,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledPoolBottom && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPoolBottomVacuumedAdditional(text)}
           multiline={true}
         />}
 
@@ -215,7 +231,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setSkimmer(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -249,7 +265,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledSkimmer && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setSkimmerAdditional(text)}
           multiline={true}
         />}
 
@@ -262,7 +278,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setBlowPoolDeck(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -296,7 +312,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledBlow && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setBlowPoolDeckAdditional(text)}
           multiline={true}
         />}
 
@@ -309,7 +325,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setPoolPump(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -343,7 +359,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledPoolPump && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPoolPumpAdditional(text)}
           multiline={true}
         />}
 
@@ -356,7 +372,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setMainPoolCleanliness(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -390,7 +406,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledPoolCleanliness && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setMainPoolCleanlinessAdditional(text)}
           multiline={true}
         />}
 
@@ -403,7 +419,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setSpaCleanliness(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -437,7 +453,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledSpaCleanliness && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setSpaCleanlinessAdditional(text)}
           multiline={true}
         />}
 
@@ -450,7 +466,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setHairStrainer(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -484,7 +500,7 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledHairStrainer && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setHairStrainerAdditional(text)}
           multiline={true}
         />}
 
@@ -497,7 +513,7 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setTileLine(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -531,12 +547,23 @@ export const Cleanliness = observer(({ navigation }) => {
         { isEnabledTileLine && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setTileLineAdditional(text)}
           multiline={true}
         />}
 
       </View>
-      <Button title={"Next"} onPress={() => navigation.navigate("Chemicals")} />
+      <LinearGradient 
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+            colors={['#5B70B8', '#7360B8']} 
+            style={styles.linearGradient}
+          >
+    
+        <Text style={styles.buttonText} 
+          onPress={() => navigation.navigate("Chemicals")}
+        >
+          Next
+        </Text>
+      </LinearGradient>
       </View>
 
     </ScrollView>
@@ -625,5 +652,22 @@ const styles = StyleSheet.create({
   },
   indicatorWithNotes: {
     marginBottom: 33,
+  },
+
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });

@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import RadioButton from '../../components/RadioButton';
-import DateTimePicker from "@react-native-community/datetimepicker";
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
@@ -31,14 +31,21 @@ const PROP = [
 
 export const Overall = observer(({ navigation }) => {
   const {
-    maintenanceReportForm: {
-      isDatePickerVisible,
-      isTimePickerVisible,
-      onChange,
-      onSubmit,
-      setName,
-      reportDate,
-      reportTime,
+    overallForm: {
+      setChlorinatorOperational,
+      setChlorinatorOperationalAdditional,
+      setGagues,
+      setGaguesAdditional,
+      setHamzat,
+      setHamzatAdditional,
+      setMsds,
+      setMsdsAdditional,
+      setWaterLeak,
+      setWaterLeakAdditional,
+      setFilterBackwashed,
+      setFilterBackwashedAdditional,
+      setCartrigesWashed,
+      setCartrigesWashedAdditional,
     },
   } = useMst();
 
@@ -73,7 +80,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Chlorinator opperational?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setChlorinatorOperational(text)}
+            />
           </View>
         </View>
 
@@ -91,7 +100,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledChlorinator && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setChlorinatorOperationalAdditional(text)}
           multiline={true}
         />}
 
@@ -102,7 +111,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>All guages working?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setGagues(text)}
+            />
           </View>
         </View>
 
@@ -120,7 +131,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledGuages && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setGaguesAdditional(text)}
           multiline={true}
         />}
 
@@ -131,7 +142,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>HAMZAT kit?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setHamzat(text)}
+            />
           </View>
         </View>
 
@@ -149,7 +162,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledHamzat && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setHamzatAdditional(text)}
           multiline={true}
         />}
 
@@ -160,7 +173,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>MSDS Sheet?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setMsds(text)}
+            />
           </View>
         </View>
 
@@ -178,7 +193,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledMsds && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setMsdsAdditional(text)}
           multiline={true}
         />}
 
@@ -189,7 +204,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Water leak detection?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setWaterLeak(text)}
+            />
           </View>
         </View>
 
@@ -207,7 +224,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledLeak && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setWaterLeakAdditional(text)}
           multiline={true}
         />}
 
@@ -218,7 +235,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Filter Backwashed?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setFilterBackwashed(text)}
+            />
           </View>
         </View>
 
@@ -236,7 +255,7 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledCartridges && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setFilterBackwashedAdditional(text)}
           multiline={true}
         />}
 
@@ -247,7 +266,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Cartridges Washed?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setCartrigesWashed(text)}
+            />
           </View>
         </View>
 
@@ -265,14 +286,25 @@ export const Overall = observer(({ navigation }) => {
        { isEnabledFilter && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setCartrigesWashedAdditional(text)}
           multiline={true}
         />}
 
       </View>
 
       
-      <Button title={"Next"} onPress={() => navigation.navigate("Note")}/>
+      <LinearGradient 
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+            colors={['#5B70B8', '#7360B8']} 
+            style={styles.linearGradient}
+          >
+    
+        <Text style={styles.buttonText} 
+          onPress={() => navigation.navigate("Note")}
+        >
+          Next
+        </Text>
+      </LinearGradient>
       </View>
 
     </ScrollView>
@@ -373,5 +405,22 @@ const styles = StyleSheet.create({
   },
   radioNotes: {
     marginBottom: 35,
+  },
+  
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });

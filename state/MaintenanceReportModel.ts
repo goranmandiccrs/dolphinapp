@@ -2,13 +2,12 @@ import { types } from "mobx-state-tree";
 
 export const MaintenanceReportModel = types
   .model("Login", {
-    poolName: "",
+    setPoolName: "",
+    setTechnicianName: "",
+    numberOfBathers: "",
     reportDate: types.Date,
     reportTime: types.Date,
-    note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    isModalVisible: false,
+    setWeather: "",
   })
   .views((self) => {
     return {
@@ -19,9 +18,14 @@ export const MaintenanceReportModel = types
   })
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
+      setPoolName(setPoolName: string) {
+        self.setPoolName = setPoolName;
+      },
+      setTechnicianName(setTechnicianName: string) {
+        self.setTechnicianName = setTechnicianName;
+      },
+      numberOfBathers(numberOfBathers: string) {
+        self.numberOfBathers = numberOfBathers;
       },
       setReportDate(reportDate) {
         self.reportDate = reportDate;
@@ -29,45 +33,8 @@ export const MaintenanceReportModel = types
       setReportTime(reportTime) {
         self.reportTime = reportTime;
       },
-      setNote(note: string) {
-        self.note = note;
-      },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
-      },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
-      },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
-      },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
-      },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
-      },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
-      },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
-      },
-      onSubmit() {
-        self.isModalVisible = true;
-      },
-      hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
-      }
+      // setWeather(setWeather) {
+      //   self.setWeather = setWeather;
+      // },
     };
   });

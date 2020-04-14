@@ -2,72 +2,76 @@ import { types } from "mobx-state-tree";
 
 export const ChemicalsModel = types
   .model("Login", {
-    poolName: "",
-    reportDate: types.Date,
-    reportTime: types.Date,
-    note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    isModalVisible: false,
-  })
-  .views((self) => {
-    return {
-      get time() {
-        return `${self.reportTime.getHours()}:${self.reportTime.getMinutes()}`;
-      },
-    };
+    chlorineMain: "",
+    chlorineSpa: "",
+    clorineAdditional: "",
+    phMain: "",
+    phSpa: "",
+    phAdditional: "",
+    alkalintyMain: "",
+    alkalintySpa: "",
+    alkalintyAdditional: "",
+    calciumMain: "",
+    calciumSpa: "",
+    calciumAdditional: "",
+    ctaMain: "",
+    ctaSpa: "",
+    ctaAdditional: "",
+    onSubmit: "",
   })
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
+      setChlorineMain(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
+      setChlorineSpa(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
+      setChlorineAdditional(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      setNote(note: string) {
-        self.note = note;
+      
+      setPhMain(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
+      setPhSpa(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
+      setPhAdditional(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
+
+      setAlkalintyMain(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
+      setAlkalintySpa(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
+      setAlkalintyAdditional(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
+
+      setCalciumMain(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
+      setCalciumSpa(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      onSubmit() {
-        self.isModalVisible = true;
+      setCalciumAdditional(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
       },
-      hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
-      }
+
+      setCtaMain(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
+      },
+      setCtaSpa(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
+      },
+      setCtaAdditional(chlorineMain: string) {
+        self.chlorineMain = chlorineMain;
+      },
+      
+      onSubmit() {;
+      },
     };
   });

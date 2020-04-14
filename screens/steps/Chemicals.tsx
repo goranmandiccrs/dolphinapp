@@ -11,7 +11,7 @@ import {
   Switch,
 } from "react-native";
 
-import DateTimePicker from "@react-native-community/datetimepicker";
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
@@ -19,14 +19,23 @@ import { useMst } from "../../state/RootModel";
 
 export const Chemicals = observer(({ navigation }) => {
   const {
-    maintenanceReportForm: {
-      isDatePickerVisible,
-      isTimePickerVisible,
-      onChange,
+    chemicalsForm: {
+      setChlorineMain,
+      setChlorineSpa,
+      setChlorineAdditional,
+      setPhMain,
+      setPhSpa,
+      setPhAdditional,
+      setAlkalintyMain,
+      setAlkalintySpa,
+      setAlkalintyAdditional,
+      setCalciumMain,
+      setCalciumSpa,
+      setCalciumAdditional,
+      setCtaMain,
+      setCtaSpa,
+      setCtaAdditional,
       onSubmit,
-      setName,
-      reportDate,
-      reportTime,
     },
   } = useMst();
 
@@ -60,7 +69,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setChlorineMain(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -86,7 +95,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setChlorineSpa(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -120,7 +129,7 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledChlorine && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setChlorineAdditional(text)}
           multiline={true}
         />}
 
@@ -136,7 +145,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="7.0 to 8.0"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setPhMain(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -162,7 +171,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="7.0 to 8.0"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setPhSpa(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -196,7 +205,7 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledPh && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPhAdditional(text)}
           multiline={true}
         />}
 
@@ -212,7 +221,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 20 to 120"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setAlkalintyMain(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -238,7 +247,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 20 to 120"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setAlkalintySpa(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -272,7 +281,7 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledAlkalinity && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setAlkalintyAdditional(text)}
           multiline={true}
         />}
 
@@ -288,7 +297,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 150 to 900"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setCalciumMain(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -314,7 +323,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 150 to 900"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setCalciumSpa(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -348,7 +357,7 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledCalcium && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setCalciumAdditional(text)}
           multiline={true}
         />}
 
@@ -364,7 +373,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 5 to 80"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setCtaMain(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -390,7 +399,7 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 5 to 80"
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => setCtaSpa(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
@@ -424,13 +433,25 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledCya && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setCtaAdditional(text)}
           multiline={true}
         />}
 
       </View>
       
-      <Button title={"Next"} onPress={() => navigation.navigate("Equipment")}/>
+
+      <LinearGradient 
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+            colors={['#5B70B8', '#7360B8']} 
+            style={styles.linearGradient}
+          >
+    
+        <Text style={styles.buttonText} 
+          onPress={() => navigation.navigate("Equipment")}
+        >
+          Next
+        </Text>
+      </LinearGradient>
       
       </View>
 
@@ -529,5 +550,22 @@ const styles = StyleSheet.create({
   },
   indicatorWithNotes: {
     marginBottom: 33,
+  },
+
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });

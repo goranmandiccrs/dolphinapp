@@ -2,72 +2,109 @@ import { types } from "mobx-state-tree";
 
 export const CleanlinessModel = types
   .model("Login", {
-    poolName: "",
-    reportDate: types.Date,
-    reportTime: types.Date,
-    note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    isModalVisible: false,
-  })
-  .views((self) => {
-    return {
-      get time() {
-        return `${self.reportTime.getHours()}:${self.reportTime.getMinutes()}`;
-      },
-    };
+    poolClarity: "",
+    poolClarityAdditional: "",
+
+    spaClarity: "",
+    spaClarityAdditional: "",
+
+    poolBottomVacuumed: "",
+    poolBottomVacuumedAdditional: "",
+
+    skimmer: "",
+    skimmerAdditional: "",
+
+    blowPoolDeck: "",
+    blowPoolDeckAdditional: "",
+
+    poolPump: "",
+    poolPumpAdditional: "",
+
+    mainPoolCleanliness: "",
+    mainPoolCleanlinessAdditional: "",
+
+    spaCleanliness: "",
+    spaCleanlinessAdditional: "",
+
+    hairStrainer: "",
+    hairStrainerAdditional: "",
+
+    tileLine: "",
+    tileLineAdditional: "",
   })
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
+      setPoolClarity(poolClarity: string) {
+        self.poolClarity = poolClarity;
       },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
+      setPoolClarityAdditional(poolClarityAdditional: string) {
+        self.poolClarityAdditional = poolClarityAdditional;
       },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
+
+      setSpaClarity(spaClarity: string) {
+        self.spaClarity = spaClarity;
       },
-      setNote(note: string) {
-        self.note = note;
+      setSpaClarityAdditional(spaClarityAdditional: string) {
+        self.spaClarityAdditional = spaClarityAdditional;
       },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
+      
+      setPoolBottomVacuumed(poolBottomVacuumed: string) {
+        self.poolBottomVacuumed = poolBottomVacuumed;
       },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
+      setPoolBottomVacuumedAdditional(poolBottomVacuumedAdditional: string) {
+        self.poolBottomVacuumedAdditional = poolBottomVacuumedAdditional;
       },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
+      setSkimmer(skimmer: string) {
+        self.skimmer = skimmer;
       },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
+      setSkimmerAdditional(skimmerAdditional: string) {
+        self.skimmerAdditional = skimmerAdditional;
       },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
+      setBlowPoolDeck(blowPoolDeck: string) {
+        self.blowPoolDeck = blowPoolDeck;
       },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
+      setBlowPoolDeckAdditional(blowPoolDeckAdditional: string) {
+        self.blowPoolDeckAdditional = blowPoolDeckAdditional;
       },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
+
+      setPoolPump(poolPump: string) {
+        self.poolPump = poolPump;
       },
+      setPoolPumpAdditional(poolPumpAdditional: string) {
+        self.poolPumpAdditional = poolPumpAdditional;
+      },
+
+      setMainPoolCleanliness(mainPoolCleanliness: string) {
+        self.mainPoolCleanliness = mainPoolCleanliness;
+      },
+      setMainPoolCleanlinessAdditional(mainPoolCleanlinessAdditional: string) {
+        self.mainPoolCleanlinessAdditional = mainPoolCleanlinessAdditional;
+      },
+      
+      setSpaCleanliness(spaCleanliness: string) {
+        self.spaCleanliness = spaCleanliness;
+      },
+      setSpaCleanlinessAdditional(spaCleanlinessAdditional: string) {
+        self.spaCleanlinessAdditional = spaCleanlinessAdditional;
+      },
+
+      setHairStrainer(hairStrainer: string) {
+        self.hairStrainer = hairStrainer;
+      },
+      setHairStrainerAdditional(hairStrainerAdditional: string) {
+        self.hairStrainerAdditional = hairStrainerAdditional;
+      },
+      
+      setTileLine(tileLine: string) {
+        self.tileLine = tileLine;
+      },
+      setTileLineAdditional(tileLineAdditional: string) {
+        self.tileLineAdditional = tileLineAdditional;
+      },
+     
       onSubmit() {
-        self.isModalVisible = true;
+        
       },
-      hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
-      }
+      
     };
   });

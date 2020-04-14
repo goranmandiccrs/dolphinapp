@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import {
   SafeAreaView,
   StyleSheet,
+  ScrollView,
   Text,
   TextInput,
   View,
@@ -19,10 +20,18 @@ import LinearGradient from 'react-native-linear-gradient';
 
 export const LoginScreen = observer(({ navigation }) => {
   const {
-    loginForm: { setEmail, setPassword },
+    loginForm: {
+      setEmail,
+      setPassword,
+      result,
+      submitLogin,
+      password,
+      email,
+      setResult,
+    },
   } = useMst();
   return (
-    <SafeAreaView>
+    <ScrollView>
       <ImageBackground
         source={require("../assets/login-bg.jpg")}
         style={{ width: "100%", height: "100%" }}
@@ -32,6 +41,7 @@ export const LoginScreen = observer(({ navigation }) => {
 
           <Text style={styles.titleText}>Welcome to our 
           field report app.</Text>
+
 
           <Text style={styles.baseText}>
             Enter your email address and password to access your account.
@@ -47,14 +57,18 @@ export const LoginScreen = observer(({ navigation }) => {
             style={styles.input}
             placeholder="Password"
           />
+
           {/* <Button
-            onPress={() => navigation.navigate("ReportChoice")}
-            // ViewComponent={LinearGradient}
-            // linearGradientProps={{
-            //   colors: ['red', 'pink'],
-            //   start: { x: 0, y: 0.5 },
-            //   end: { x: 1, y: 0.5 },
-            // }}
+            onPress={() =>
+              submitLogin(email, password)
+                .then(() => {
+                  navigation.navigate("ReportChoice");
+                })
+                .catch((e) => {
+                  setResult(e);
+                })
+            }
+
             title="Login"
           /> */}
 
@@ -64,7 +78,17 @@ export const LoginScreen = observer(({ navigation }) => {
                 style={styles.linearGradient}
               >
         
-            <Text style={styles.buttonText} onPress={() => navigation.navigate("ReportChoice")}>
+            <Text style={styles.buttonText} 
+              onPress={() =>
+                submitLogin(email, password)
+                  .then(() => {
+                    navigation.navigate("ReportChoice");
+                  })
+                  .catch((e) => {
+                    setResult(e);
+                  })
+              }
+            >
               Login
             </Text>
           </LinearGradient>
@@ -73,7 +97,7 @@ export const LoginScreen = observer(({ navigation }) => {
           {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 
@@ -104,6 +128,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 10,
+    flex: 1,
   },
   buttonText: {
     fontSize: 17,

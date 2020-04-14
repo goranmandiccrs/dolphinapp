@@ -7,8 +7,11 @@ import {
   TouchableHighlight,
   View,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
 } from "react-native";
+
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { useMst } from "../../state/RootModel";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -20,44 +23,46 @@ import PhotoUpload from "react-native-photo-upload";
 
 export const Note = observer(({ navigation }) => {
   const {
-    serviceReportForm: {
-      hideModal,
-      isDatePickerVisible,
-      isModalVisible,
-      isTimePickerVisible,
-      onChange,
-      onFocusDatePicker,
-      onFocusTimePicker,
-      onSubmit,
-      setName,
-      reportDate,
-      reportTime,
-      time,
+    noteForm: {
+      setLeaveNote,
     },
   } = useMst();
 
   
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.container}>
           <Text style={styles.label}>Leave a Note</Text>
           <TextInput
             style={styles.textArea}
-            onChangeText={(text) => setName(text)}
+            onChangeText={(text) => setLeaveNote(text)}
           />
-        </View>
 
-        <View>
-          
-        <PhotoUpload containerStyle={styles.photo} photoPickerTitle={"Select photo"}>
-          <Upload />
-          <Picture />
-        </PhotoUpload>
 
-        <Button title={"Next"} onPress={() => navigation.navigate("Signature")}/>
+            
+          <PhotoUpload containerStyle={styles.photo} photoPickerTitle={"Select photo"}>
+            <Upload />
+            <Picture />
+          </PhotoUpload>
+
+
+
+        <LinearGradient 
+              start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+              colors={['#5B70B8', '#7360B8']} 
+              style={styles.linearGradient}
+            >
+      
+          <Text style={styles.buttonText} 
+            onPress={() => navigation.navigate("Signature")}
+          >
+            Next
+          </Text>
+        </LinearGradient>
       </View>
 
-    </SafeAreaView>
+
+    </ScrollView>
   );
 });
 
@@ -109,6 +114,22 @@ const styles = StyleSheet.create({
     // backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#D3D9EB",
+  },
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 
 });

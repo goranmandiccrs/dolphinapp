@@ -2,72 +2,66 @@ import { types } from "mobx-state-tree";
 
 export const OverallModel = types
   .model("Login", {
-    poolName: "",
-    reportDate: types.Date,
-    reportTime: types.Date,
-    note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    isModalVisible: false,
+    chlorinatorOperational: "",
+    chlorinatorOperationalAdditional: "",
+    gagues: "",
+    gaguesAdditional: "",
+    hamzat: "",
+    hamzatAdditional: "",
+    msds: "",
+    msdsAdditional: "",
+    waterLeak: "",
+    waterLeakAdditional: "",
+    filterBackwashed: "",
+    filterBackwashedAdditional: "",
+    cartrigesWashed: "",
+    cartrigesWashedAdditional: "",
   })
-  .views((self) => {
-    return {
-      get time() {
-        return `${self.reportTime.getHours()}:${self.reportTime.getMinutes()}`;
-      },
-    };
-  })
+  
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
+      setChlorinatorOperational(chlorinatorOperational: string) {
+        self.chlorinatorOperational = chlorinatorOperational;
       },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
+      setChlorinatorOperationalAdditional(chlorinatorOperationalAdditional: string) {
+        self.chlorinatorOperationalAdditional = chlorinatorOperationalAdditional;
       },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
+      setGagues(gagues: string) {
+        self.gagues = gagues;
       },
-      setNote(note: string) {
-        self.note = note;
+      setGaguesAdditional(gaguesAdditional: string) {
+        self.gaguesAdditional = gaguesAdditional;
       },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
+      setHamzat(hamzat: string) {
+        self.hamzat = hamzat;
       },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
+      setHamzatAdditional(hamzatAdditional: string) {
+        self.hamzatAdditional = hamzatAdditional;
       },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
+      setMsds(msds: string) {
+        self.msds = msds;
       },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
+      setMsdsAdditional(msdsAdditional: string) {
+        self.msdsAdditional = msdsAdditional;
       },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
+      setWaterLeak(waterLeak: string) {
+        self.waterLeak = waterLeak;
       },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
+      setWaterLeakAdditional(waterLeakAdditional: string) {
+        self.waterLeakAdditional = waterLeakAdditional;
       },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
+      setFilterBackwashed(filterBackwashed: string) {
+        self.filterBackwashed = filterBackwashed;
       },
-      onSubmit() {
-        self.isModalVisible = true;
+      setFilterBackwashedAdditional(filterBackwashedAdditional: string) {
+        self.filterBackwashedAdditional = filterBackwashedAdditional;
       },
-      hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
-      }
+      setCartrigesWashed(cartrigesWashed: string) {
+        self.cartrigesWashed = cartrigesWashed;
+      },
+      setCartrigesWashedAdditional(cartrigesWashedAdditional: string) {
+        self.cartrigesWashedAdditional = cartrigesWashedAdditional;
+      },
+      
     };
   });

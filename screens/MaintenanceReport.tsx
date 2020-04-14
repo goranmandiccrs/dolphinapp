@@ -38,16 +38,13 @@ const PROP = [
 export const MaintenanceReport = observer(({ navigation }) => {
   const {
     maintenanceReportForm: {
-      isDatePickerVisible,
-      isTimePickerVisible,
-      onFocusDatePicker,
-      onFocusTimePicker,
-      onChange,
-      onSubmit,
-      setName,
-      time,
+      setPoolName,
+      setTechnicianName,
+      numberOfBathers,
       reportDate,
       reportTime,
+      setWeather,
+      time,
     },
   } = useMst();
 
@@ -57,13 +54,13 @@ export const MaintenanceReport = observer(({ navigation }) => {
         <Text style={styles.label}>Pool Name / Address</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPoolName(text)}
         />
 
         <Text style={styles.label}>Technician name</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setTechnicianName(text)}
         />
 
         <Text style={styles.label}>Number of bathers</Text>
@@ -71,18 +68,16 @@ export const MaintenanceReport = observer(({ navigation }) => {
           <View style={styles.flex}>
             <TextInput
               style={styles.inputIndicator}
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => numberOfBathers(text)}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
                 style={[styles.indicator, styles.indicatorBorderLeft]}
               >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
                 <Text style={styles.indicatorText}> + </Text>
@@ -92,18 +87,18 @@ export const MaintenanceReport = observer(({ navigation }) => {
         </View>
 
         <Text style={styles.label}>Date & Time</Text>
-        <Text style={[styles.input, {color: "rgba(85, 87, 94, 0.4)", borderRadius: 5, }]} onPress={onFocusDatePicker}>{reportDate.toDateString()}, {time}</Text>
+        <Text style={[styles.input, {color: "rgba(85, 87, 94, 0.4)", borderRadius: 5, }]}>{reportDate.toDateString()}, {time}</Text>
         
         
 
 
       <View style={[styles.radiosContainer, {marginBottom:87}]}>
         <Text style={styles.label}>Weather?</Text>
-          <RadioButton PROP={PROP} />
+          <RadioButton 
+          // onChangeText={(text) => setWeather(text)}
+          PROP={PROP} />
         </View>
 
-
-      {/* <Button title={"Next"} onPress={() => navigation.navigate("Cleanliness")}/> */}
 
       <LinearGradient 
         start={{x: 0, y: 0}} end={{x: 1, y: 0}} 

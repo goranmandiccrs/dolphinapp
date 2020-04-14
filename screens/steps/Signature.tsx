@@ -4,13 +4,13 @@ import {
   Modal,
   Text,
   TextInput,
-  TouchableHighlight,
   View,
   SafeAreaView,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 
-
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { useMst } from "../../state/RootModel";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -36,12 +36,24 @@ export const Signature = observer(({ navigation }) => {
 
   
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.container}>
-      <Text style={styles.label}>Electronic signature of technician (initials)</Text>
+        <Text style={styles.label}>Electronic signature of technician (initials)</Text>
         
+        <LinearGradient 
+              start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+              colors={['#5B70B8', '#7360B8']} 
+              style={styles.linearGradient}
+            >
+      
+          <Text style={styles.buttonText} 
+            onPress={() => navigation.navigate("Signature")}
+          >
+            Submit 
+          </Text>
+        </LinearGradient>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 
@@ -93,6 +105,23 @@ const styles = StyleSheet.create({
     // backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#D3D9EB",
+  },
+
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 
 });

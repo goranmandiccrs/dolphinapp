@@ -1,73 +1,48 @@
 import { types } from "mobx-state-tree";
+import { boolean } from "mobx-state-tree/dist/internal";
 
 export const EquipmentModel = types
   .model("Login", {
-    poolName: "",
-    reportDate: types.Date,
-    reportTime: types.Date,
-    note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    isModalVisible: false,
+    pumpCondition: "",
+    pumpConditionAdditional: "",
+    filterCondition: "",
+    filterConditionAdditional: "",
+    valvesCondition: "",
+    valvesConditionAdditional: "",
+    others: "",
+    othersAdditional: "",
   })
-  .views((self) => {
-    return {
-      get time() {
-        return `${self.reportTime.getHours()}:${self.reportTime.getMinutes()}`;
-      },
-    };
-  })
+  
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
+      setPumpCondition(pumpCondition: string) {
+        self.pumpCondition = pumpCondition;
       },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
+      setPumpConditionAdditional(pumpConditionAdditional: string) {
+        self.pumpConditionAdditional = pumpConditionAdditional;
       },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
+
+      setFilterCondition(filterCondition: string) {
+        self.filterCondition = filterCondition;
       },
-      setNote(note: string) {
-        self.note = note;
+      setFilterConditionAdditional(filterConditionAdditional: string) {
+        self.filterConditionAdditional = filterConditionAdditional;
       },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
+
+      setValvesCondition(valvesCondition: string) {
+        self.valvesCondition = valvesCondition;
       },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
+      setValvesConditionAdditional(valvesConditionAdditional: string) {
+        self.valvesConditionAdditional = valvesConditionAdditional;
       },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
+
+      setOthers(others: string) {
+        self.others = others;
       },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
+      setOthersAdditional(othersAdditional: string) {
+        self.othersAdditional = othersAdditional;
       },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
-      },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
-      },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        console.log(value);
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
-      },
-      onSubmit() {
-        self.isModalVisible = true;
-      },
-      hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
-      }
+      
+      onSubmit() {}
     };
   });

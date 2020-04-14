@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import RadioButton from '../../components/RadioButton';
-import DateTimePicker from "@react-native-community/datetimepicker";
+import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
@@ -31,14 +31,15 @@ const PROP = [
 
 export const Equipment = observer(({ navigation }) => {
   const {
-    maintenanceReportForm: {
-      isDatePickerVisible,
-      isTimePickerVisible,
-      onChange,
-      onSubmit,
-      setName,
-      reportDate,
-      reportTime,
+    equipmentForm: {
+      setPumpCondition,
+      setPumpConditionAdditional,
+      setFilterCondition,
+      setFilterConditionAdditional,
+      setValvesCondition,
+      setValvesConditionAdditional,
+      setOthers,
+      setOthersAdditional,
     },
   } = useMst();
 
@@ -65,7 +66,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Pump in good condition?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setPumpCondition(text)}
+            />
           </View>
         </View>
 
@@ -83,7 +86,7 @@ export const Equipment = observer(({ navigation }) => {
        { isEnabledPump && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setPumpConditionAdditional(text)}
           multiline={true}
         />}
 
@@ -94,7 +97,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Pool filter in good condition?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setFilterCondition(text)}
+            />
           </View>
         </View>
 
@@ -112,7 +117,7 @@ export const Equipment = observer(({ navigation }) => {
        { isEnabledFilter && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setFilterConditionAdditional(text)}
           multiline={true}
         />}
 
@@ -123,7 +128,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Valves in good condition?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setValvesCondition(text)}
+            />
           </View>
         </View>
 
@@ -141,7 +148,7 @@ export const Equipment = observer(({ navigation }) => {
        { isEnabledValves && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setValvesConditionAdditional(text)}
           multiline={true}
         />}
 
@@ -149,10 +156,11 @@ export const Equipment = observer(({ navigation }) => {
 
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
-          <Text style={styles.label}>Valves in good condition?</Text>
+          <Text style={styles.label}>Others?</Text>
           
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP} />
+            <RadioButton PROP={PROP} 
+              onValueChange={(text) => setOthers(text)}/>
           </View>
         </View>
 
@@ -170,14 +178,25 @@ export const Equipment = observer(({ navigation }) => {
        { isEnabledOther && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setName(text)}
+          onChangeText={(text) => setOthersAdditional(text)}
           multiline={true}
         />}
 
       </View>
 
       
-      <Button title={"Next"} onPress={() => navigation.navigate("Overall")}/>
+      <LinearGradient 
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
+            colors={['#5B70B8', '#7360B8']} 
+            style={styles.linearGradient}
+          >
+    
+        <Text style={styles.buttonText} 
+          onPress={() => navigation.navigate("Overall")}
+        >
+          Next
+        </Text>
+      </LinearGradient>
       </View>
 
     </ScrollView>
@@ -278,5 +297,22 @@ const styles = StyleSheet.create({
   },
   radioNotes: {
     marginBottom: 35,
+  },
+
+  linearGradient: {
+    marginTop: 31,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 10,
+    flex: 1,
+  },
+  buttonText: {
+    fontSize: 17,
+    textAlign: 'center',
+    fontFamily: "AcuminPro-Bold",
+    paddingTop: 18,
+    paddingBottom: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });

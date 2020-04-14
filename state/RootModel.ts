@@ -33,8 +33,7 @@ export const rootStore = RootModel.create({
     reportTime: new Date(),
   },
   cleanlinessForm: {
-    reportDate: new Date(),
-    reportTime: new Date(),
+    
   },
   chemicalsForm: {
     reportDate: new Date(),
