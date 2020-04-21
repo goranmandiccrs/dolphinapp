@@ -32,10 +32,34 @@ export const Chemicals = observer(({ navigation }) => {
       setCalciumMain,
       setCalciumSpa,
       setCalciumAdditional,
-      setCtaMain,
-      setCtaSpa,
-      setCtaAdditional,
+      setCyaMain,
+      setCyaSpa,
+      setCyaAdditional,
+      increaseNumberValue,
+      decreaseNumberValue,
+      decreaseDecimalNumberValue,
+      increaseDecimalNumberValue,
+      increaseNumberValueByTen,
+      decreaseNumberValueByTen,
+      increaseNumberValueByFive,
+      decreaseNumberValueByFive,
+      chlorineMain,
+      chlorineSpa,
+      clorineAdditional,
+      phMain,
+      phSpa,
+      phAdditional,
+      alkalintyMain,
+      alkalintySpa,
+      alkalintyAdditional,
+      calciumMain,
+      calciumSpa,
+      calciumAdditional,
+      cyaMain,
+      cyaSpa,
+      cyaAdditional,
       onSubmit,
+      
     },
   } = useMst();
 
@@ -69,21 +93,21 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setChlorineMain(text)}
+              onChangeText={(text) => setChlorineMain(parseInt(text))}
+              value={chlorineMain?.toString()}
             />
-
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("chlorineMain", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("chlorineMain", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -95,21 +119,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setChlorineSpa(text)}
+              onChangeText={(text) => setChlorineSpa(parseInt(text))}
+              value={chlorineSpa?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValue("chlorineSpa", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("chlorineSpa", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -145,21 +170,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="7.0 to 8.0"
-              onChangeText={(text) => setPhMain(text)}
+              onChangeText={(text) => setPhMain(parseInt(text))}
+              value={phMain?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseDecimalNumberValue("phMain", 7.0)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseDecimalNumberValue("phMain", 8.0)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -171,21 +197,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="7.0 to 8.0"
-              onChangeText={(text) => setPhSpa(text)}
+              onChangeText={(text) => setPhSpa(parseInt(text))}
+              value={phSpa?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseDecimalNumberValue("phSpa", 7)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseDecimalNumberValue("phSpa", 8)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -221,21 +248,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 20 to 120"
-              onChangeText={(text) => setAlkalintyMain(text)}
+              onChangeText={(text) => setAlkalintyMain(parseInt(text))}
+              value={alkalintyMain?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValueByTen("alkalintyMain", 20)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValueByTen("alkalintyMain", 120)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -247,21 +275,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 20 to 120"
-              onChangeText={(text) => setAlkalintySpa(text)}
+              onChangeText={(text) => setAlkalintySpa(parseInt(text))}
+              value={alkalintySpa?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValueByTen("alkalintySpa", 20)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValueByTen("alkalintySpa", 120)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -297,21 +326,22 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 150 to 900"
-              onChangeText={(text) => setCalciumMain(text)}
+              onChangeText={(text) => setCalciumMain(parseInt(text))}
+              value={calciumMain?.toString()}
             />
 
-            <View style={[styles.flex, styles.buttonGroup]}>
+          <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValueByTen("calciumMain", 150)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValueByTen("calciumMain", 900)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -323,23 +353,24 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 150 to 900"
-              onChangeText={(text) => setCalciumSpa(text)}
+              onChangeText={(text) => setPhMain(parseInt(text))}
+              value={calciumSpa?.toString()}
             />
-
-            <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+          <View style={[styles.flex, styles.buttonGroup]}> 
+        
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValueByTen("calciumSpa", 150)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValueByTen("calciumSpa", 900)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
-            </View>
+          </View>
           </View>
         </View>
 
@@ -365,7 +396,7 @@ export const Chemicals = observer(({ navigation }) => {
 
       <View style={styles.indicatorWithNotes}
       >
-      <Text style={styles.labelLarge}>CTA</Text>
+      <Text style={styles.labelLarge}>CYA</Text>
 
       <Text style={styles.label}>Main</Text>
         <View>
@@ -373,23 +404,24 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 5 to 80"
-              onChangeText={(text) => setCtaMain(text)}
+              onChangeText={(text) => setCyaMain(parseInt(text))}
+              value={cyaMain?.toString()}
             />
 
-            <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
-                <Text style={styles.indicatorText}> - </Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderRight]}
-              >
-                <Text style={styles.indicatorText}> + </Text>
-              </TouchableHighlight>
-            </View>
+              <View style={[styles.flex, styles.buttonGroup]}> 
+                <TouchableHighlight
+                      onPress={() => decreaseNumberValueByFive("cyaMain", 150)}
+                      style={[styles.indicator, styles.indicatorBorderLeft]}
+                    >
+                    <Text style={styles.indicatorText}> - </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    onPress={() => increaseNumberValueByFive("cyaMain", 900)}
+                    style={[styles.indicator, styles.indicatorBorderRight]}
+                  >
+                      <Text style={styles.indicatorText}> + </Text>
+                  </TouchableHighlight>
+              </View>
           </View>
         </View>
         
@@ -399,23 +431,24 @@ export const Chemicals = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 5 to 80"
-              onChangeText={(text) => setCtaSpa(text)}
+              onChangeText={(text) => setCyaSpa(parseInt(text))}
+              value={cyaSpa?.toString()}
             />
 
-            <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
-                <Text style={styles.indicatorText}> - </Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderRight]}
-              >
-                <Text style={styles.indicatorText}> + </Text>
-              </TouchableHighlight>
-            </View>
+            <View style={[styles.flex, styles.buttonGroup]}> 
+                <TouchableHighlight
+                      onPress={() => decreaseNumberValueByFive("cyaSpa", 150)}
+                      style={[styles.indicator, styles.indicatorBorderLeft]}
+                    >
+                    <Text style={styles.indicatorText}> - </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    onPress={() => increaseNumberValueByFive("cyaSpa", 900)}
+                    style={[styles.indicator, styles.indicatorBorderRight]}
+                  >
+                      <Text style={styles.indicatorText}> + </Text>
+                  </TouchableHighlight>
+              </View>
           </View>
         </View>
 
@@ -433,7 +466,7 @@ export const Chemicals = observer(({ navigation }) => {
        { isEnabledCya && <TextInput
           style={styles.textArea}
           placeholder="You can write your notes here"
-          onChangeText={(text) => setCtaAdditional(text)}
+          onChangeText={(text) => setCyaAdditional(text)}
           multiline={true}
         />}
 

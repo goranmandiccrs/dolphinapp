@@ -8,28 +8,28 @@ export const CleanlinessModel = types
     spaClarity: types.maybeNull(types.number),
     spaClarityAdditional: "",
 
-    poolBottomVacuumed: "",
+    poolBottomVacuumed: types.maybeNull(types.number),
     poolBottomVacuumedAdditional: "",
 
-    skimmer: "",
+    skimmer: types.maybeNull(types.number),
     skimmerAdditional: "",
 
-    blowPoolDeck: "",
+    blowPoolDeck: types.maybeNull(types.number),
     blowPoolDeckAdditional: "",
 
-    poolPump: "",
+    poolPump: types.maybeNull(types.number),
     poolPumpAdditional: "",
 
-    mainPoolCleanliness: "",
+    mainPoolCleanliness: types.maybeNull(types.number),
     mainPoolCleanlinessAdditional: "",
 
-    spaCleanliness: "",
+    spaCleanliness: types.maybeNull(types.number),
     spaCleanlinessAdditional: "",
 
-    hairStrainer: "",
+    hairStrainer: types.maybeNull(types.number),
     hairStrainerAdditional: "",
 
-    tileLine: "",
+    tileLine: types.maybeNull(types.number),
     tileLineAdditional: "",
   })
   .actions((self) => {
@@ -40,6 +40,7 @@ export const CleanlinessModel = types
       decreaseNumberValue(value, minValue): void {
         self[value] = Math.max(self[value] - 1, minValue);
       },
+      
       setPoolClarity(poolClarity: number) {
         self.poolClarity = poolClarity;
       },
@@ -55,49 +56,49 @@ export const CleanlinessModel = types
         self.spaClarityAdditional = spaClarityAdditional;
       },
 
-      setPoolBottomVacuumed(poolBottomVacuumed: string) {
+      setPoolBottomVacuumed(poolBottomVacuumed: number) {
         self.poolBottomVacuumed = poolBottomVacuumed;
       },
       setPoolBottomVacuumedAdditional(poolBottomVacuumedAdditional: string) {
         self.poolBottomVacuumedAdditional = poolBottomVacuumedAdditional;
       },
-      setSkimmer(skimmer: string) {
+      setSkimmer(skimmer: number) {
         self.skimmer = skimmer;
       },
       setSkimmerAdditional(skimmerAdditional: string) {
         self.skimmerAdditional = skimmerAdditional;
       },
-      setBlowPoolDeck(blowPoolDeck: string) {
+      setBlowPoolDeck(blowPoolDeck: number) {
         self.blowPoolDeck = blowPoolDeck;
       },
       setBlowPoolDeckAdditional(blowPoolDeckAdditional: string) {
         self.blowPoolDeckAdditional = blowPoolDeckAdditional;
       },
-      setPoolPump(poolPump: string) {
+      setPoolPump(poolPump: number) {
         self.poolPump = poolPump;
       },
       setPoolPumpAdditional(poolPumpAdditional: string) {
         self.poolPumpAdditional = poolPumpAdditional;
       },
-      setMainPoolCleanliness(mainPoolCleanliness: string) {
+      setMainPoolCleanliness(mainPoolCleanliness: number) {
         self.mainPoolCleanliness = mainPoolCleanliness;
       },
       setMainPoolCleanlinessAdditional(mainPoolCleanlinessAdditional: string) {
         self.mainPoolCleanlinessAdditional = mainPoolCleanlinessAdditional;
       },
-      setSpaCleanliness(spaCleanliness: string) {
+      setSpaCleanliness(spaCleanliness: number) {
         self.spaCleanliness = spaCleanliness;
       },
       setSpaCleanlinessAdditional(spaCleanlinessAdditional: string) {
         self.spaCleanlinessAdditional = spaCleanlinessAdditional;
       },
-      setHairStrainer(hairStrainer: string) {
+      setHairStrainer(hairStrainer: number) {
         self.hairStrainer = hairStrainer;
       },
       setHairStrainerAdditional(hairStrainerAdditional: string) {
         self.hairStrainerAdditional = hairStrainerAdditional;
       },
-      setTileLine(tileLine: string) {
+      setTileLine(tileLine: number) {
         self.tileLine = tileLine;
       },
       setTileLineAdditional(tileLineAdditional: string) {

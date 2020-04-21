@@ -17,36 +17,20 @@ import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
 
-const PROP = [
-  {
-    key: "rainy",
-    text: "Rainy",
-  },
-  {
-    key: "Partly Cloudy",
-    text: "Partly Cloudy",
-  },
-  {
-    key: "Cloudy",
-    text: "Cloudy",
-  },
-  {
-    key: "Sunny",
-    text: "Sunny",
-  },
-];
-
 export const MaintenanceReport = observer(({ navigation }) => {
   const {
     maintenanceReportForm: {
       setPoolName,
       setTechnicianName,
-      numberOfBathers,
+      setNumberOfBathers,
       reportDate,
       reportTime,
       setWeather,
       time,
       weatherRadioGroup,
+      increaseNumberValue,
+      decreaseNumberValue,
+      numberOfBathers,
     },
   } = useMst();
 
@@ -70,19 +54,22 @@ export const MaintenanceReport = observer(({ navigation }) => {
           <View style={styles.flex}>
             <TextInput
               style={styles.inputIndicator}
-              onChangeText={(text) => numberOfBathers(text)}
+              onChangeText={(text) => setNumberOfBathers(parseInt(text))}
+              value={numberOfBathers?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValue("numberOfBathers", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
+                onPress={() => increaseNumberValue("numberOfBathers", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>

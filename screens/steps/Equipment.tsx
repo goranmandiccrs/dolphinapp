@@ -17,28 +17,20 @@ import React, { useState } from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../../state/RootModel";
 
-const PROP = [
-	{
-		key: 'yes',
-		text: 'Yes',
-	},
-	{
-		key: 'no',
-		text: 'No',
-	},
-];
 
 
 export const Equipment = observer(({ navigation }) => {
   const {
     equipmentForm: {
-      setPumpCondition,
+      pumpConditionRadioGroup,
       setPumpConditionAdditional,
-      setFilterCondition,
+      filterConditionRadioGroup,
       setFilterConditionAdditional,
-      setValvesCondition,
+      valvesConditionRadioGroup,
       setValvesConditionAdditional,
-      setOthers,
+      filterPressureRadioGroup,
+      setFilterPressureAdditional,
+      othersRadioGroup,
       setOthersAdditional,
     },
   } = useMst();
@@ -51,6 +43,9 @@ export const Equipment = observer(({ navigation }) => {
 
   const [isEnabledValves, setIsEnabledValves] = useState(false);
   const toggleSwitchValves = () => setIsEnabledValves(previousStateValves => !previousStateValves);
+
+  const [isEnabledPressure, setIsEnabledPressure] = useState(false);
+  const toggleSwitchPressure = () => setIsEnabledPressure(previousStatePressure => !previousStatePressure);
 
   const [isEnabledOther, setIsEnabledOther] = useState(false);
   const toggleSwitchOther = () => setIsEnabledOther(previousStateOther => !previousStateOther);
@@ -66,8 +61,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Pump in good condition?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setPumpCondition(text)}
+            <RadioButton
+              options={pumpConditionRadioGroup.options}
+              radioGroup={pumpConditionRadioGroup}
             />
           </View>
         </View>
@@ -97,8 +93,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Pool filter in good condition?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setFilterCondition(text)}
+          <RadioButton
+              options={filterConditionRadioGroup.options}
+              radioGroup={filterConditionRadioGroup}
             />
           </View>
         </View>
@@ -128,8 +125,9 @@ export const Equipment = observer(({ navigation }) => {
           <Text style={styles.label}>Valves in good condition?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setValvesCondition(text)}
+          <RadioButton
+              options={valvesConditionRadioGroup.options}
+              radioGroup={valvesConditionRadioGroup}
             />
           </View>
         </View>
@@ -156,11 +154,45 @@ export const Equipment = observer(({ navigation }) => {
 
       <View style={styles.radioNotes}>
         <View style={{flexDirection: "row"}}>
+          <Text style={styles.label}>Filter pressure?</Text>
+
+          <View style={{flex: 1}}>
+            <RadioButton
+              options={filterPressureRadioGroup.options}
+              radioGroup={filterPressureRadioGroup}
+            />
+          </View>
+        </View>
+
+        <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+              trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+              thumbColor={isEnabledPressure ? "#FFFFFF" : "#FFFFFF"}
+              ios_backgroundColor="#EFEFF4"
+              onValueChange={toggleSwitchPressure}
+              value={isEnabledPressure}
+            />
+            <Text> Notes? </Text>
+        </View>
+
+       { isEnabledPressure && <TextInput
+          style={styles.textArea}
+          placeholder="You can write your notes here"
+          onChangeText={(text) => setFilterPressureAdditional(text)}
+          multiline={true}
+        />}
+
+      </View>
+
+      <View style={styles.radioNotes}>
+        <View style={{flexDirection: "row"}}>
           <Text style={styles.label}>Others?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setOthers(text)}/>
+            <RadioButton
+              options={othersRadioGroup.options}
+              radioGroup={othersRadioGroup}
+            />
           </View>
         </View>
 

@@ -32,19 +32,19 @@ const PROP = [
 export const Overall = observer(({ navigation }) => {
   const {
     overallForm: {
-      setChlorinatorOperational,
+      chlorinatorOperationalRadioGroup,
       setChlorinatorOperationalAdditional,
-      setGagues,
+      gaguesRadioGroup,
       setGaguesAdditional,
-      setHamzat,
+      hamzatRadioGroup,
       setHamzatAdditional,
-      setMsds,
+      msdsRadioGroup,
       setMsdsAdditional,
-      setWaterLeak,
+      waterLeakRadioGroup,
       setWaterLeakAdditional,
-      setFilterBackwashed,
+      filterBackwashedRadioGroup,
       setFilterBackwashedAdditional,
-      setCartrigesWashed,
+      cartrigesWashedRadioGroup,
       setCartrigesWashedAdditional,
     },
   } = useMst();
@@ -80,8 +80,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Chlorinator opperational?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setChlorinatorOperational(text)}
+            <RadioButton
+              options={chlorinatorOperationalRadioGroup.options}
+              radioGroup={chlorinatorOperationalRadioGroup}
             />
           </View>
         </View>
@@ -111,8 +112,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>All guages working?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setGagues(text)}
+            <RadioButton
+              options={gaguesRadioGroup.options}
+              radioGroup={gaguesRadioGroup}
             />
           </View>
         </View>
@@ -142,8 +144,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>HAMZAT kit?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setHamzat(text)}
+          <RadioButton
+              options={hamzatRadioGroup.options}
+              radioGroup={hamzatRadioGroup}
             />
           </View>
         </View>
@@ -173,8 +176,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>MSDS Sheet?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setMsds(text)}
+          <RadioButton
+              options={msdsRadioGroup.options}
+              radioGroup={msdsRadioGroup}
             />
           </View>
         </View>
@@ -204,8 +208,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Water leak detection?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setWaterLeak(text)}
+          <RadioButton
+              options={waterLeakRadioGroup.options}
+              radioGroup={waterLeakRadioGroup}
             />
           </View>
         </View>
@@ -235,8 +240,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Filter Backwashed?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setFilterBackwashed(text)}
+            <RadioButton
+              options={filterBackwashedRadioGroup.options}
+              radioGroup={filterBackwashedRadioGroup}
             />
           </View>
         </View>
@@ -266,8 +272,9 @@ export const Overall = observer(({ navigation }) => {
           <Text style={styles.label}>Cartridges Washed?</Text>
 
           <View style={{flex: 1}}>
-            <RadioButton PROP={PROP}
-              onValueChange={(text) => setCartrigesWashed(text)}
+            <RadioButton
+              options={cartrigesWashedRadioGroup.options}
+              radioGroup={cartrigesWashedRadioGroup}
             />
           </View>
         </View>

@@ -2,73 +2,100 @@ import { types } from "mobx-state-tree";
 
 export const ChemicalsModel = types
   .model("Login", {
-    chlorineMain: "",
-    chlorineSpa: "",
+    chlorineMain: types.maybeNull(types.number),
+    chlorineSpa: types.maybeNull(types.number),
     clorineAdditional: "",
-    phMain: "",
-    phSpa: "",
+    phMain: types.maybeNull(types.number),
+    phSpa: types.maybeNull(types.number),
     phAdditional: "",
-    alkalintyMain: "",
-    alkalintySpa: "",
+    alkalintyMain: types.maybeNull(types.number),
+    alkalintySpa: types.maybeNull(types.number),
     alkalintyAdditional: "",
-    calciumMain: "",
-    calciumSpa: "",
+    calciumMain: types.maybeNull(types.number),
+    calciumSpa: types.maybeNull(types.number),
     calciumAdditional: "",
-    ctaMain: "",
-    ctaSpa: "",
-    ctaAdditional: "",
-    onSubmit: "",
+    cyaMain: types.maybeNull(types.number),
+    cyaSpa: types.maybeNull(types.number),
+    cyaAdditional: "",
+    onSubmit: types.maybeNull(types.number),
   })
   .actions((self) => {
     return {
-      setChlorineMain(chlorineMain: string) {
+      increaseNumberValue(value, maxValue): void {
+        self[value] = Math.min(self[value] + 1, maxValue);
+      },
+      decreaseNumberValue(value, minValue): void {
+        self[value] = Math.max(self[value] - 1, minValue);
+      },
+
+      increaseDecimalNumberValue(value, maxValue): void {
+        self[value] = Math.min(self[value] += 0.1, maxValue);
+      },
+      decreaseDecimalNumberValue(value, minValue): void {
+        self[value] = Math.max(self[value] -= 0.1, minValue);
+      },
+
+      increaseNumberValueByTen(value, maxValue): void {
+        self[value] = Math.min(self[value] + 10, maxValue);
+      },
+      decreaseNumberValueByTen(value, minValue): void {
+        self[value] = Math.max(self[value] - 10, minValue);
+      },
+      increaseNumberValueByFive(value, maxValue): void {
+        self[value] = Math.min(self[value] + 5, maxValue);
+      },
+      decreaseNumberValueByFive(value, minValue): void {
+        self[value] = Math.max(self[value] - 5, minValue);
+      },
+
+      setChlorineMain(chlorineMain: number) {
         self.chlorineMain = chlorineMain;
       },
-      setChlorineSpa(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setChlorineSpa(chlorineSpa: number) {
+        self.chlorineSpa = chlorineSpa;
       },
-      setChlorineAdditional(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setChlorineAdditional(clorineAdditional: string) {
+        self.clorineAdditional = clorineAdditional;
       },
       
-      setPhMain(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setPhMain(phMain: number) {
+        self.phMain = phMain;
       },
-      setPhSpa(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setPhSpa(phSpa: number) {
+        self.phSpa = phSpa;
       },
-      setPhAdditional(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
-      },
-
-      setAlkalintyMain(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
-      },
-      setAlkalintySpa(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
-      },
-      setAlkalintyAdditional(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setPhAdditional(phAdditional: string) {
+        self.phAdditional = phAdditional;
       },
 
-      setCalciumMain(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setAlkalintyMain(alkalintyMain: number) {
+        self.alkalintyMain = alkalintyMain;
       },
-      setCalciumSpa(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setAlkalintySpa(alkalintySpa: number) {
+        self.alkalintySpa = alkalintySpa;
       },
-      setCalciumAdditional(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setAlkalintyAdditional(alkalintyAdditional: string) {
+        self.alkalintyAdditional = alkalintyAdditional;
       },
 
-      setCtaMain(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setCalciumMain(calciumMain: number) {
+        self.calciumMain = calciumMain;
       },
-      setCtaSpa(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setCalciumSpa(calciumSpa: number) {
+        self.calciumSpa = calciumSpa;
       },
-      setCtaAdditional(chlorineMain: string) {
-        self.chlorineMain = chlorineMain;
+      setCalciumAdditional(calciumAdditional: string) {
+        self.calciumAdditional = calciumAdditional;
+      },
+
+      setCyaMain(cyaMain: number) {
+        self.cyaMain = cyaMain;
+      },
+      setCyaSpa(cyaSpa: number) {
+        self.cyaSpa = cyaSpa;
+      },
+      setCyaAdditional(cyaAdditional: string) {
+        self.cyaAdditional = cyaAdditional;
       },
       
       onSubmit() {;

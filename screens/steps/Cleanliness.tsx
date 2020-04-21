@@ -41,7 +41,15 @@ export const Cleanliness = observer(({ navigation }) => {
       decreaseNumberValue,
       onSubmit,
       poolClarity,
-      spaClarity
+      spaClarity,
+      poolBottomVacuumed,
+      skimmer,
+      blowPoolDeck,
+      poolPump,
+      mainPoolCleanliness,
+      spaCleanliness,
+      hairStrainer,
+      tileLine,
     },
   } = useMst();
 
@@ -138,22 +146,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              value={spaClarity?.toString()}
               onChangeText={(text) => setSpaClarity(parseInt(text))}
+              value={spaClarity?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("spaClarity", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("spaClarity", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -186,21 +194,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setPoolBottomVacuumed(text)}
+              onChangeText={(text) => setPoolBottomVacuumed(parseInt(text))}
+              value={poolBottomVacuumed?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValue("poolBottomVacuumed", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("poolBottomVacuumed", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -233,21 +242,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setSkimmer(text)}
+              onChangeText={(text) => setSkimmer(parseInt(text))}
+              value={skimmer?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValue("skimmer", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("skimmer", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -280,21 +290,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setBlowPoolDeck(text)}
+              onChangeText={(text) => setBlowPoolDeck(parseInt(text))}
+              value={blowPoolDeck?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+                  onPress={() => decreaseNumberValue("blowPoolDeck", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("blowPoolDeck", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -327,21 +338,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setPoolPump(text)}
+              onChangeText={(text) => setPoolPump(parseInt(text))}
+              value={poolPump?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("poolPump", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("poolPump", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -374,21 +386,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setMainPoolCleanliness(text)}
+              onChangeText={(text) => setMainPoolCleanliness(parseInt(text))}
+              value={mainPoolCleanliness?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("mainPoolCleanliness", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("mainPoolCleanliness", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -421,21 +434,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setSpaCleanliness(text)}
+              onChangeText={(text) => setSpaCleanliness(parseInt(text))}
+              value={spaCleanliness?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("spaCleanliness", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("spaCleanliness", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -468,21 +482,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setHairStrainer(text)}
+              onChangeText={(text) => setHairStrainer(parseInt(text))}
+              value={hairStrainer?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("hairStrainer", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("hairStrainer", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -515,21 +530,22 @@ export const Cleanliness = observer(({ navigation }) => {
             <TextInput
               style={styles.inputIndicator}
               placeholder="Grade 1 to 5"
-              onChangeText={(text) => setTileLine(text)}
+              onChangeText={(text) => setTileLine(parseInt(text))}
+              value={tileLine?.toString()}
             />
 
             <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
-                onPress={onSubmit}
-                style={[styles.indicator, styles.indicatorBorderLeft]}
-              >
+            <TouchableHighlight
+                  onPress={() => decreaseNumberValue("tileLine", 1)}
+                  style={[styles.indicator, styles.indicatorBorderLeft]}
+                >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={onSubmit}
+                onPress={() => increaseNumberValue("tileLine", 5)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
-                <Text style={styles.indicatorText}> + </Text>
+                  <Text style={styles.indicatorText}> + </Text>
               </TouchableHighlight>
             </View>
           </View>

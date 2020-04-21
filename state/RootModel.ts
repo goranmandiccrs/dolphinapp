@@ -51,8 +51,178 @@ export const rootStore = RootModel.create({
   },
   cleanlinessForm: {},
   chemicalsForm: {},
-  equipmentForm: {},
-  overallForm: {},
+  equipmentForm: {
+    pumpConditionRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    filterConditionRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    valvesConditionRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    filterPressureRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    othersRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+  },
+  overallForm: {
+    chlorinatorOperationalRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    gaguesRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    hamzatRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    msdsRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    waterLeakRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    filterBackwashedRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+    cartrigesWashedRadioGroup: {
+      options: [
+        {
+          text: "Yes",
+        },
+        {
+          text: "No",
+        },
+        {
+          text: "N/A",
+        },
+      ],
+      // selectedOption: "Yes",
+    },
+  },
   noteForm: {},
   signatureForm: {},
 });

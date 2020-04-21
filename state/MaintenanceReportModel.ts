@@ -3,9 +3,9 @@ import {RadioGroupModel} from "../components/RadioGroupModel";
 
 export const MaintenanceReportModel = types
   .model("Login", {
-    setPoolName: "",
-    setTechnicianName: "",
-    numberOfBathers: "",
+    poolName: "",
+    technicianName: "",
+    numberOfBathers: types.maybeNull(types.number),
     reportDate: types.Date,
     reportTime: types.Date,
     setWeather: "",
@@ -20,13 +20,21 @@ export const MaintenanceReportModel = types
   })
   .actions((self) => {
     return {
-      setPoolName(setPoolName: string) {
-        self.setPoolName = setPoolName;
+      increaseNumberValue(value, maxValue): void {
+        self[value] = Math.min(self[value] + 1, maxValue);
       },
-      setTechnicianName(setTechnicianName: string) {
-        self.setTechnicianName = setTechnicianName;
+      decreaseNumberValue(value, minValue): void {
+        self[value] = Math.max(self[value] - 1, minValue);
       },
-      numberOfBathers(numberOfBathers: string) {
+
+
+      setPoolName(poolName: string) {
+        self.poolName = poolName;
+      },
+      setTechnicianName(technicianName: string) {
+        self.technicianName = technicianName;
+      },
+      setNumberOfBathers(numberOfBathers: number) {
         self.numberOfBathers = numberOfBathers;
       },
       setReportDate(reportDate) {
