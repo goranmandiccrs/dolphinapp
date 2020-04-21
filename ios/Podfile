@@ -38,6 +38,8 @@ target 'dolphin' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'react-native-signature-capture', :path => '../node_modules/react-native-signature-capture'
+
   target 'dolphinTests' do
     inherit! :search_paths
     # Pods for testing

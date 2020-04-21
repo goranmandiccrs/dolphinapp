@@ -24,7 +24,6 @@ export const RadioGroupModel = types
         self.selectedOption = self.options.find(
           (option) => option.text === selectedOption
         ) || null;
-        console.log(self.selectedOption?.text)
       }
     }
   });

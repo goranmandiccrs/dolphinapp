@@ -278,3 +278,4 @@ export function useMst() {
   }
   return store as RootInstance;
 }
+export interface RootType extends Instance<typeof rootStore> {}
