@@ -6,7 +6,7 @@ export const ChemicalsModel = types
     chlorineSpa: types.maybeNull(types.number),
     clorineAdditional: "",
     phMain: types.maybeNull(types.number),
-    phSpa: types.maybeNull(types.number),
+      phSpa: types.maybeNull(types.number),
     phAdditional: "",
     alkalintyMain: types.maybeNull(types.number),
     alkalintySpa: types.maybeNull(types.number),
@@ -29,10 +29,12 @@ export const ChemicalsModel = types
       },
 
       increaseDecimalNumberValue(value, maxValue): void {
-        self[value] = Math.min(self[value] += 0.1, maxValue);
+        self[value] = self[value] || 7;
+        self[value] = parseFloat(Math.min(self[value] += 0.1, maxValue).toFixed(2));
       },
       decreaseDecimalNumberValue(value, minValue): void {
-        self[value] = Math.max(self[value] -= 0.1, minValue);
+        self[value] = self[value] || 7;
+        self[value] = parseFloat(Math.max(self[value] -= 0.1, minValue).toFixed(2));
       },
 
       increaseNumberValueByTen(value, maxValue): void {
@@ -57,7 +59,7 @@ export const ChemicalsModel = types
       setChlorineAdditional(clorineAdditional: string) {
         self.clorineAdditional = clorineAdditional;
       },
-      
+
       setPhMain(phMain: number) {
         self.phMain = phMain;
       },
@@ -97,7 +99,7 @@ export const ChemicalsModel = types
       setCyaAdditional(cyaAdditional: string) {
         self.cyaAdditional = cyaAdditional;
       },
-      
+
       onSubmit() {;
       },
     };

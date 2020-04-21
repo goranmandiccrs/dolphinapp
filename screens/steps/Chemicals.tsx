@@ -59,7 +59,7 @@ export const Chemicals = observer(({ navigation }) => {
       cyaSpa,
       cyaAdditional,
       onSubmit,
-      
+
     },
   } = useMst();
 
@@ -68,7 +68,7 @@ export const Chemicals = observer(({ navigation }) => {
 
   const [isEnabledPh, setIsEnabledPh] = useState(false);
   const toggleSwitchPh = () => setIsEnabledPh(previousStatePh => !previousStatePh);
-  
+
   const [isEnabledAlkalinity, setIsEnabledAlkalinity] = useState(false);
   const toggleSwitchAlkalinity = () => setIsEnabledAlkalinity(previousStateAlkalinity => !previousStateAlkalinity);
 
@@ -77,12 +77,12 @@ export const Chemicals = observer(({ navigation }) => {
 
   const [isEnabledCya, setIsEnabledCya] = useState(false);
   const toggleSwitchCya = () => setIsEnabledCya(previousStateCya => !previousStateCya);
-  
+
   return (
     <ScrollView>
       <View style={styles.container}>
 
-      
+
       <View style={styles.indicatorWithNotes}
       >
       <Text style={styles.labelLarge}>Chlorine</Text>
@@ -112,7 +112,7 @@ export const Chemicals = observer(({ navigation }) => {
             </View>
           </View>
         </View>
-        
+
       <Text style={styles.label}>Spa</Text>
         <View>
           <View style={styles.flex}>
@@ -176,8 +176,8 @@ export const Chemicals = observer(({ navigation }) => {
 
             <View style={[styles.flex, styles.buttonGroup]}>
             <TouchableHighlight
-                  onPress={() => decreaseDecimalNumberValue("phMain", 7.0)}
-                  style={[styles.indicator, styles.indicatorBorderLeft]}
+              onPress={() => decreaseDecimalNumberValue("phMain", 7.0)}
+              style={[styles.indicator, styles.indicatorBorderLeft]}
                 >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
@@ -190,7 +190,7 @@ export const Chemicals = observer(({ navigation }) => {
             </View>
           </View>
         </View>
-        
+
       <Text style={styles.label}>Spa</Text>
         <View>
           <View style={styles.flex}>
@@ -268,7 +268,7 @@ export const Chemicals = observer(({ navigation }) => {
             </View>
           </View>
         </View>
-        
+
       <Text style={styles.label}>Spa</Text>
         <View>
           <View style={styles.flex}>
@@ -346,7 +346,7 @@ export const Chemicals = observer(({ navigation }) => {
             </View>
           </View>
         </View>
-        
+
       <Text style={styles.label}>Spa</Text>
         <View>
           <View style={styles.flex}>
@@ -356,8 +356,8 @@ export const Chemicals = observer(({ navigation }) => {
               onChangeText={(text) => setPhMain(parseInt(text))}
               value={calciumSpa?.toString()}
             />
-          <View style={[styles.flex, styles.buttonGroup]}> 
-        
+          <View style={[styles.flex, styles.buttonGroup]}>
+
             <TouchableHighlight
                   onPress={() => decreaseNumberValueByTen("calciumSpa", 150)}
                   style={[styles.indicator, styles.indicatorBorderLeft]}
@@ -408,7 +408,7 @@ export const Chemicals = observer(({ navigation }) => {
               value={cyaMain?.toString()}
             />
 
-              <View style={[styles.flex, styles.buttonGroup]}> 
+              <View style={[styles.flex, styles.buttonGroup]}>
                 <TouchableHighlight
                       onPress={() => decreaseNumberValueByFive("cyaMain", 150)}
                       style={[styles.indicator, styles.indicatorBorderLeft]}
@@ -424,7 +424,7 @@ export const Chemicals = observer(({ navigation }) => {
               </View>
           </View>
         </View>
-        
+
       <Text style={styles.label}>Spa</Text>
         <View>
           <View style={styles.flex}>
@@ -435,7 +435,7 @@ export const Chemicals = observer(({ navigation }) => {
               value={cyaSpa?.toString()}
             />
 
-            <View style={[styles.flex, styles.buttonGroup]}> 
+            <View style={[styles.flex, styles.buttonGroup]}>
                 <TouchableHighlight
                       onPress={() => decreaseNumberValueByFive("cyaSpa", 150)}
                       style={[styles.indicator, styles.indicatorBorderLeft]}
@@ -471,21 +471,21 @@ export const Chemicals = observer(({ navigation }) => {
         />}
 
       </View>
-      
 
-      <LinearGradient 
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-            colors={['#5B70B8', '#7360B8']} 
+
+      <LinearGradient
+            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+            colors={['#5B70B8', '#7360B8']}
             style={styles.linearGradient}
           >
-    
-        <Text style={styles.buttonText} 
+
+        <Text style={styles.buttonText}
           onPress={() => navigation.navigate("Equipment")}
         >
           Next
         </Text>
       </LinearGradient>
-      
+
       </View>
 
     </ScrollView>

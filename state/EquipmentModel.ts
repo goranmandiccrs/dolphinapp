@@ -1,5 +1,4 @@
 import { types } from "mobx-state-tree";
-import { boolean } from "mobx-state-tree/dist/internal";
 import {RadioGroupModel} from "../components/RadioGroupModel";
 
 export const EquipmentModel = types
@@ -15,10 +14,10 @@ export const EquipmentModel = types
     othersRadioGroup: RadioGroupModel,
     othersAdditional: "",
   })
-  
+
   .actions((self) => {
     return {
-      
+
       setPumpConditionAdditional(pumpConditionAdditional: string) {
         self.pumpConditionAdditional = pumpConditionAdditional;
       },
@@ -38,7 +37,7 @@ export const EquipmentModel = types
       setOthersAdditional(othersAdditional: string) {
         self.othersAdditional = othersAdditional;
       },
-      
+
       onSubmit() {}
     };
   });

@@ -1,7 +1,6 @@
 import { observer } from "mobx-react";
 import {
   ImageBackground,
-  SafeAreaView,
   ScrollView,
   Text,
   View,
@@ -9,11 +8,10 @@ import {
 } from "react-native";
 
 import React from "react";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export const ReportChoice = observer(({ navigation }) => {
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.container} >
 
         <Text style={styles.title}>Choose the report
@@ -39,7 +37,7 @@ export const ReportChoice = observer(({ navigation }) => {
         title="Back to login"
       />*/}
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 

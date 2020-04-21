@@ -34,15 +34,19 @@ export const rootStore = RootModel.create({
     weatherRadioGroup: {
       options: [
         {
+          id: "Rainy",
           text: "Rainy",
         },
         {
+          id: "Partly Cloudy",
           text: "Partly Cloudy",
         },
         {
+          id: "Cloudy",
           text: "Cloudy",
         },
         {
+          id: "Sunny",
           text: "Sunny",
         },
       ],
@@ -55,172 +59,208 @@ export const rootStore = RootModel.create({
     pumpConditionRadioGroup: {
       options: [
         {
+          id: "Yes_pumpConditionRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_pumpConditionRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_pumpConditionRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_pumpConditionRadioGroup",
     },
     filterConditionRadioGroup: {
       options: [
         {
+          id: "Yes_filterConditionRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_filterConditionRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_filterConditionRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_filterConditionRadioGroup",
     },
     valvesConditionRadioGroup: {
       options: [
         {
+          id: "Yes_valvesConditionRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_valvesConditionRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_valvesConditionRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_valvesConditionRadioGroup",
     },
     filterPressureRadioGroup: {
       options: [
         {
+          id: "Yes_filterPressureRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_filterPressureRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_filterPressureRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_filterPressureRadioGroup",
     },
     othersRadioGroup: {
       options: [
         {
+          id: "Yes_othersRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_othersRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_othersRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_othersRadioGroup",
     },
   },
   overallForm: {
     chlorinatorOperationalRadioGroup: {
       options: [
         {
+          id: "Yes_chlorinatorOperationalRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_chlorinatorOperationalRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_chlorinatorOperationalRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_chlorinatorOperationalRadioGroup",
     },
     gaguesRadioGroup: {
       options: [
         {
+          id: "Yes_gaguesRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_gaguesRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_gaguesRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_gaguesRadioGroup",
     },
     hamzatRadioGroup: {
       options: [
         {
+          id: "Yes_hamzatRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_hamzatRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_hamzatRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_hamzatRadioGroup",
     },
     msdsRadioGroup: {
       options: [
         {
+          id: "Yes_msdsRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_msdsRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_msdsRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_msdsRadioGroup",
     },
     waterLeakRadioGroup: {
       options: [
         {
+          id: "Yes_waterLeakRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_waterLeakRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_waterLeakRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_waterLeakRadioGroup",
     },
     filterBackwashedRadioGroup: {
       options: [
         {
+          id: "Yes_filterBackwashedRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_filterBackwashedRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_filterBackwashedRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_filterBackwashedRadioGroup",
     },
     cartrigesWashedRadioGroup: {
       options: [
         {
+          id: "Yes_cartrigesWashedRadioGroup",
           text: "Yes",
         },
         {
+          id: "No_cartrigesWashedRadioGroup",
           text: "No",
         },
         {
+          id: "N/A_cartrigesWashedRadioGroup",
           text: "N/A",
         },
       ],
-      // selectedOption: "Yes",
+      selectedOption: "Yes_cartrigesWashedRadioGroup",
     },
   },
   noteForm: {},

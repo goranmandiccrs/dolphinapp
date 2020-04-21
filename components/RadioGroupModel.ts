@@ -1,7 +1,8 @@
 import { types } from "mobx-state-tree";
 
 export const OptionModel = types.model("RadioOption", {
-  text: types.identifier,
+  id: types.identifier,
+  text: types.string,
 });
 
 export const RadioGroupModel = types
