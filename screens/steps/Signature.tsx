@@ -96,10 +96,10 @@ export const Signature = observer(({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <ReactSignature onDragEvent={() => {}} />
         <Text style={styles.label}>
           Electronic signature of technician (initials)
         </Text>
+        <ReactSignature onDragEvent={() => {}} />
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}

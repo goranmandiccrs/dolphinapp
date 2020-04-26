@@ -4,12 +4,9 @@ import { RootType } from "./RootModel";
 
 export const SignatureModel = types
   .model("Login", {
-    poolName: "",
     note: "",
     base64Signature: types.maybeNull(types.string),
     savedImagePath: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
     isModalVisible: false,
   })
   .views((self) => {
@@ -34,39 +31,95 @@ export const SignatureModel = types
         self.savedImagePath = image.pathName;
         console.log(self.savedImagePath);
       },
-      setName(poolName: string) {
-        self.poolName = poolName;
-      },
       setNote(note: string) {
         self.note = note;
-      },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
-      },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
-      },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
-      },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
-      },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
-      },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
       },
 
       onSubmit() {
         self.isModalVisible = true;
-/*        const root: RootType = getRoot(self);
+        const root: RootType = getRoot(self);
         const formData = new FormData();
 
-        formData.append("poolName", root.maintenanceReportForm.poolName);*/
+        // Maintenance Report
+        formData.append("poolName", root.maintenanceReportForm.poolName);
+        formData.append("technicianName", root.maintenanceReportForm.technicianName);
+        formData.append("numberOfBathers", root.maintenanceReportForm.numberOfBathers);
+        formData.append("reportTime", root.maintenanceReportForm.reportDate);
+        formData.append("reportDate", root.maintenanceReportForm.reportDate);
+        formData.append("weatherRadioGroup", root.maintenanceReportForm.weatherRadioGroup);
+
+        // Cleanliness
+        formData.append("poolClarity", root.cleanlinessForm.poolClarity);
+        formData.append("poolClarityAdditional", root.cleanlinessForm.poolClarityAdditional);
+        formData.append("spaClarity", root.cleanlinessForm.spaClarity);
+        formData.append("spaClarityAdditional", root.cleanlinessForm.spaClarityAdditional);
+        formData.append("poolBottomVacuumed", root.cleanlinessForm.poolBottomVacuumed);
+        formData.append("poolBottomVacuumedAdditional", root.cleanlinessForm.poolBottomVacuumedAdditional);
+        formData.append("skimmer", root.cleanlinessForm.skimmer);
+        formData.append("skimmerAdditional", root.cleanlinessForm.skimmerAdditional);
+        formData.append("blowPoolDeck", root.cleanlinessForm.blowPoolDeck);
+        formData.append("blowPoolDeckAdditional", root.cleanlinessForm.blowPoolDeckAdditional);
+        formData.append("poolPump", root.cleanlinessForm.poolPump);
+        formData.append("poolPumpAdditional", root.cleanlinessForm.poolPumpAdditional);
+        formData.append("mainPoolCleanliness", root.cleanlinessForm.mainPoolCleanliness);
+        formData.append("mainPoolCleanlinessAdditional", root.cleanlinessForm.mainPoolCleanlinessAdditional);
+        formData.append("spaCleanliness", root.cleanlinessForm.spaCleanliness);
+        formData.append("spaCleanlinessAdditional", root.cleanlinessForm.spaCleanlinessAdditional);
+        formData.append("hairStrainer", root.cleanlinessForm.hairStrainer);
+        formData.append("hairStrainerAdditional", root.cleanlinessForm.hairStrainerAdditional);
+        formData.append("tileLine", root.cleanlinessForm.tileLine);
+        formData.append("tileLineAdditional", root.cleanlinessForm.tileLineAdditional);
+
+        // Chemicals
+        formData.append("chlorineMain", root.chemicalsForm.chlorineMain);
+        formData.append("chlorineSpa", root.chemicalsForm.chlorineSpa);
+        formData.append("clorineAdditional", root.chemicalsForm.clorineAdditional);
+        formData.append("phMain", root.chemicalsForm.phMain);
+        formData.append("phSpa", root.chemicalsForm.phSpa);
+        formData.append("phAdditional", root.chemicalsForm.phAdditional);
+        formData.append("alkalintyMain", root.chemicalsForm.alkalintyMain);
+        formData.append("alkalintySpa", root.chemicalsForm.alkalintySpa);
+        formData.append("alkalintyAdditional", root.chemicalsForm.alkalintyAdditional);
+        formData.append("calciumMain", root.chemicalsForm.calciumMain);
+        formData.append("calciumSpa", root.chemicalsForm.calciumSpa);
+        formData.append("calciumAdditional", root.chemicalsForm.calciumAdditional);
+        formData.append("cyaMain", root.chemicalsForm.cyaMain);
+        formData.append("cyaSpa", root.chemicalsForm.cyaSpa);
+        formData.append("cyaAdditional", root.chemicalsForm.cyaAdditional);
+        
+        // Equipment
+        formData.append("pumpConditionRadioGroup", root.equipmentForm.pumpConditionRadioGroup);
+        formData.append("pumpConditionAdditional", root.equipmentForm.pumpConditionAdditional);
+        formData.append("filterConditionRadioGroup", root.equipmentForm.filterConditionRadioGroup);
+        formData.append("filterConditionAdditional", root.equipmentForm.filterConditionAdditional);
+        formData.append("valvesConditionRadioGroup", root.equipmentForm.valvesConditionRadioGroup);
+        formData.append("valvesConditionAdditional", root.equipmentForm.valvesConditionAdditional);
+        formData.append("filterPressureRadioGroup", root.equipmentForm.filterPressureRadioGroup);
+        formData.append("filterPressureAdditional", root.equipmentForm.filterPressureAdditional);
+        formData.append("othersRadioGroup", root.equipmentForm.othersRadioGroup);
+        formData.append("othersAdditional", root.equipmentForm.othersAdditional);
+
+        // Overall
+        formData.append("chlorinatorOperationalRadioGroup", root.overallForm.chlorinatorOperationalRadioGroup);
+        formData.append("chlorinatorOperationalAdditional", root.overallForm.chlorinatorOperationalAdditional);
+        formData.append("gaguesRadioGroup", root.overallForm.gaguesRadioGroup);
+        formData.append("gaguesAdditional", root.overallForm.gaguesAdditional);
+        formData.append("hamzatRadioGroup", root.overallForm.hamzatRadioGroup);
+        formData.append("hamzatAdditional", root.overallForm.hamzatAdditional);
+        formData.append("msdsRadioGroup", root.overallForm.msdsRadioGroup);
+        formData.append("msdsAdditional", root.overallForm.msdsAdditional);
+        formData.append("waterLeakRadioGroup", root.overallForm.waterLeakRadioGroup);
+        formData.append("waterLeakAdditional", root.overallForm.waterLeakAdditional);
+        formData.append("filterBackwashedRadioGroup", root.overallForm.filterBackwashedRadioGroup);
+        formData.append("filterBackwashedAdditional", root.overallForm.filterBackwashedAdditional);
+        formData.append("cartrigesWashedRadioGroup", root.overallForm.cartrigesWashedRadioGroup);
+        formData.append("cartrigesWashedAdditional", root.overallForm.cartrigesWashedAdditional);
+
+        // Note
+        formData.append("leaveNote", root.noteForm.leaveNote);
+        
+        // Signature
+        formData.append("savedImagePath", root.signatureForm.savedImagePath);
       },
       hideModal(navigation) {
         self.isModalVisible = false;

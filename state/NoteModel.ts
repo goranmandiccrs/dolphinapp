@@ -1,7 +1,7 @@
 import { types } from "mobx-state-tree";
 
 export const NoteModel = types
-  .model("Login", {
+  .model("Note", {
     leaveNote: "",
   })
   .actions((self) => {
