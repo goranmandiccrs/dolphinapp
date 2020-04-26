@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableHighlight,
   View,
-  SafeAreaView,
+  ScrollView,
   StyleSheet,
 } from "react-native";
 
@@ -23,45 +23,42 @@ import LinearGradient from 'react-native-linear-gradient';
 export const ServiceReport = observer(({ navigation }) => {
   const {
     serviceReportForm: {
-      hideModal,
-      isDatePickerVisible,
-      isModalVisible,
-      isTimePickerVisible,
-      onChange,
-      onFocusDatePicker,
-      onFocusTimePicker,
-      onSubmit,
+      setNote,
       setName,
+      hideModal,
+      onSubmit,
       reportDate,
       reportTime,
       time,
+      isModalVisible,
     },
   } = useMst();
 
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View style={styles.container} >
         <Text>Pool Name / Address</Text>
         <TextInput onChangeText={(text) => setName(text)} />
         
         <Text style={styles.label}>Date & Time</Text>
-        <Text style={[styles.input, {color: "rgba(85, 87, 94, 0.4)", borderRadius: 5, }]} onPress={onFocusDatePicker}>{reportDate.toDateString()}, {time}</Text>
+        <Text
+          style={[
+            styles.input,
+            { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
+          ]}
+        >
+          {reportDate.toDateString()}, {time}
+        </Text>
 
 
         <Text style={styles.label}>Leave a Note</Text>
-          <TextInput
-            style={styles.textArea}
-            onChangeText={(text) => setName(text)}
-          />
+        <TextInput style={styles.textArea} onChangeText={(text) => setNote(text)} />
 
-        <View style={styles.upload} />
 
-        <PhotoUpload photoPickerTitle={"Select photo"}>
-            <Upload />
+        <PhotoUpload containerStyle={styles.photo} photoPickerTitle={"Select photo"}>
+          <Upload />
           <Picture />
         </PhotoUpload>
-
-        {/* <Button title={"Submit"} onPress={onSubmit} /> */}
 
         <LinearGradient 
               start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
@@ -69,11 +66,14 @@ export const ServiceReport = observer(({ navigation }) => {
               style={styles.linearGradient}
             >
       
-          <Text style={styles.buttonText} onPress={onSubmit}>
-          Submit
+          <Text style={styles.buttonText} 
+            onPress={() => navigation.navigate("Signature")}
+          >
+            Next
           </Text>
         </LinearGradient>
       </View>
+
 
 
       <Modal animationType="slide" transparent={false} visible={isModalVisible}>
@@ -87,7 +87,7 @@ export const ServiceReport = observer(({ navigation }) => {
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </ScrollView>
   );
 });
 
@@ -159,5 +159,14 @@ const styles = StyleSheet.create({
     marginBottom: 35,
     height: 129,
     textAlignVertical: "top"
+  },
+  photo: {
+    // flexDirection: "row",
+    // flex: 1,
+    // width: 100,
+    height: 100,
+    // backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#D3D9EB",
   },
 });

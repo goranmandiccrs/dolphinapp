@@ -1,13 +1,13 @@
-import { types } from "mobx-state-tree";
+import { getRoot, types } from "mobx-state-tree";
+import { LegacyRef, useCallback } from "react";
+import { RootType } from "./RootModel";
 
 export const ServiceReportModel = types
   .model("Login", {
-    poolName: "",
     reportDate: types.Date,
     reportTime: types.Date,
+    name: "",
     note: "",
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
     isModalVisible: false,
   })
   .views((self) => {
@@ -19,54 +19,30 @@ export const ServiceReportModel = types
   })
   .actions((self) => {
     return {
-      setName(poolName: string) {
-        // Alert.alert(poolName);
-        self.poolName = poolName;
-      },
       setReportDate(reportDate) {
         self.reportDate = reportDate;
       },
       setReportTime(reportTime) {
         self.reportTime = reportTime;
       },
+      setName(name: string) {
+        self.name = name;
+      },
       setNote(note: string) {
         self.note = note;
       },
-      showTimePicker() {
-        self.isTimePickerVisible = true;
-      },
-      hideTimePicker() {
-        self.isTimePickerVisible = false;
-      },
-      showDatePicker() {
-        self.isDatePickerVisible = true;
-      },
-      hideDatePicker() {
-        self.isDatePickerVisible = false;
-      },
-      onFocusDatePicker(event): void {
-        event.preventDefault();
-        this.showDatePicker();
-      },
-      onFocusTimePicker(event): void {
-        event.preventDefault();
-        this.showTimePicker();
-      },
-      onChange(event, value) {
-        this.hideDatePicker();
-        this.hideTimePicker();
-        if (self.isDatePickerVisible) {
-          this.setReportDate(value);
-        } else {
-          this.setReportTime(value);
-        }
-      },
       onSubmit() {
-        self.isModalVisible = true;
+        // self.isModalVisible = true;
+
+        const root: RootType = getRoot(self);
+        const formData = new FormData();
+        formData.append("note", root.serviceReportForm.note);
+
+
       },
       hideModal(navigation) {
-        self.isModalVisible = false;
-        navigation.navigate("ReportChoice");
+        // self.isModalVisible = false;
+        // navigation.navigate("ReportChoice");
       }
     };
   });
