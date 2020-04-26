@@ -6,7 +6,7 @@ export const ChemicalsModel = types
     chlorineSpa: types.maybeNull(types.number),
     clorineAdditional: "",
     phMain: types.maybeNull(types.number),
-      phSpa: types.maybeNull(types.number),
+    phSpa: types.maybeNull(types.number),
     phAdditional: "",
     alkalintyMain: types.maybeNull(types.number),
     alkalintySpa: types.maybeNull(types.number),
@@ -38,11 +38,21 @@ export const ChemicalsModel = types
       },
 
       increaseNumberValueByTen(value, maxValue): void {
+        self[value] = self[value] || 10;
         self[value] = Math.min(self[value] + 10, maxValue);
       },
       decreaseNumberValueByTen(value, minValue): void {
         self[value] = Math.max(self[value] - 10, minValue);
       },
+
+      increaseNumberValueByTenSecond(value, maxValue): void {
+        self[value] = self[value] || 140;
+        self[value] = Math.min(self[value] + 10, maxValue);
+      },
+      decreaseNumberValueByTenSecond(value, minValue): void {
+        self[value] = Math.max(self[value] - 10, minValue);
+      },
+
       increaseNumberValueByFive(value, maxValue): void {
         self[value] = Math.min(self[value] + 5, maxValue);
       },

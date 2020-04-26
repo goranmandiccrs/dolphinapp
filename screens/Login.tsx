@@ -73,7 +73,7 @@ export const LoginScreen = observer(({ navigation }) => {
           <View
             onTouchEnd={() => {
               // console.log("clicked");
-              navigation.navigate("ReportChoice");
+              navigation.navigate("Chemicals");
               /* submitLogin(email, password)
                 .then(() => {
                   navigation.navigate("ReportChoice");

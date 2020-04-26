@@ -41,6 +41,8 @@ export const Chemicals = observer(({ navigation }) => {
       increaseDecimalNumberValue,
       increaseNumberValueByTen,
       decreaseNumberValueByTen,
+      increaseNumberValueByTenSecond,
+      decreaseNumberValueByTenSecond,
       increaseNumberValueByFive,
       decreaseNumberValueByFive,
       chlorineMain,
@@ -332,13 +334,13 @@ export const Chemicals = observer(({ navigation }) => {
 
           <View style={[styles.flex, styles.buttonGroup]}>
               <TouchableHighlight
-                  onPress={() => decreaseNumberValueByTen("calciumMain", 150)}
+                  onPress={() => decreaseNumberValueByTenSecond("calciumMain", 150)}
                   style={[styles.indicator, styles.indicatorBorderLeft]}
                 >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={() => increaseNumberValueByTen("calciumMain", 900)}
+                onPress={() => increaseNumberValueByTenSecond("calciumMain", 900)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
                   <Text style={styles.indicatorText}> + </Text>
@@ -359,13 +361,13 @@ export const Chemicals = observer(({ navigation }) => {
           <View style={[styles.flex, styles.buttonGroup]}>
 
             <TouchableHighlight
-                  onPress={() => decreaseNumberValueByTen("calciumSpa", 150)}
+                  onPress={() => decreaseNumberValueByTenSecond("calciumSpa", 150)}
                   style={[styles.indicator, styles.indicatorBorderLeft]}
                 >
                 <Text style={styles.indicatorText}> - </Text>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={() => increaseNumberValueByTen("calciumSpa", 900)}
+                onPress={() => increaseNumberValueByTenSecond("calciumSpa", 900)}
                 style={[styles.indicator, styles.indicatorBorderRight]}
               >
                   <Text style={styles.indicatorText}> + </Text>
