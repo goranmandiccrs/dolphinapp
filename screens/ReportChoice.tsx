@@ -8,8 +8,19 @@ import {
 } from "react-native";
 
 import React from "react";
+import {useMst} from "../state/RootModel";
 
 export const ReportChoice = observer(({ navigation }) => {
+  const {
+    maintenanceReportForm: {
+      getClients
+    },
+  } = useMst();
+  const navigateToMaintenanceReport = () => {
+    navigation.navigate("MaintenanceReport");
+    getClients();
+  };
+
   return (
     <ScrollView>
       <View style={styles.container} >
@@ -20,7 +31,7 @@ export const ReportChoice = observer(({ navigation }) => {
         source={require("../assets/maintenance_report.png")}
         style={styles.reportBox}
       >
-        <Text style={styles.reportTitle} onPress={() => navigation.navigate("MaintenanceReport")}>
+        <Text style={styles.reportTitle} onPress={() => navigateToMaintenanceReport()}>
           Create maintenance report</Text>
       </ImageBackground>
 

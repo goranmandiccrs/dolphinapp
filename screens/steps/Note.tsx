@@ -1,17 +1,18 @@
 import { observer } from "mobx-react";
 import {
-  Button,
-  Modal,
   Text,
   TextInput,
+  Button,
+  Modal,
   TouchableHighlight,
-  View,
   SafeAreaView,
+  View,
   ScrollView,
   StyleSheet,
+  Image,
 } from "react-native";
 
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from "react-native-linear-gradient";
 import React, { useState } from "react";
 import { useMst } from "../../state/RootModel";
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -23,37 +24,69 @@ import PhotoUpload from "react-native-photo-upload";
 
 export const Note = observer(({ navigation }) => {
   const {
-    noteForm: {
-      setLeaveNote,
-    },
+    noteForm: { setLeaveNote, setBeforeImage, setAfterImage, beforeImageBase64, afterImageBase64 },
   } = useMst();
 
-  
   return (
     <ScrollView>
       <View style={styles.container}>
-          <Text style={styles.label}>Leave a Note</Text>
-          <TextInput
-            style={styles.textArea}
-            onChangeText={(text) => setLeaveNote(text)}
+        <Text style={styles.label}>Leave a Note</Text>
+        <TextInput
+          style={styles.textArea}
+          onChangeText={(text) => setLeaveNote(text)}
+        />
+
+        <PhotoUpload
+          containerStyle={styles.photo}
+          photoPickerTitle={"Select photo"}
+          onPhotoSelect={(avatar) => {
+            if (avatar) {
+              setBeforeImage(avatar);
+            }
+          }}
+        >
+          <Upload />
+          <Picture />
+        </PhotoUpload>
+
+        {!!beforeImageBase64 && (
+          <Image
+            style={styles.logo}
+            source={{
+              uri: `data:image/png;base64,${beforeImageBase64}`,
+            }}
           />
+        )}
+        <PhotoUpload
+          containerStyle={styles.photo}
+          photoPickerTitle={"Select photo"}
+          onPhotoSelect={(avatar) => {
+            if (avatar) {
+              setAfterImage(avatar);
+            }
+          }}
+        >
+          <Upload />
+          <Picture />
+        </PhotoUpload>
 
+        {!!afterImageBase64 && (
+          <Image
+            style={styles.logo}
+            source={{
+              uri: `data:image/png;base64,${afterImageBase64}`,
+            }}
+          />
+        )}
 
-            
-          <PhotoUpload containerStyle={styles.photo} photoPickerTitle={"Select photo"}>
-            <Upload />
-            <Picture />
-          </PhotoUpload>
-
-
-
-        <LinearGradient 
-              start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-              colors={['#5B70B8', '#7360B8']} 
-              style={styles.linearGradient}
-            >
-      
-          <Text style={styles.buttonText} 
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={["#5B70B8", "#7360B8"]}
+          style={styles.linearGradient}
+        >
+          <Text
+            style={styles.buttonText}
             onPress={() => navigation.navigate("Signature")}
           >
             Next
@@ -64,13 +97,16 @@ export const Note = observer(({ navigation }) => {
   );
 });
 
-
 const styles = StyleSheet.create({
   flex: {
     // flex: 1,
     flexDirection: "row",
     // justifyContent: 'center',
     // alignItems: 'stretch'
+  },
+  logo: {
+    width: 66,
+    height: 58,
   },
   container: {
     padding: 20,
@@ -102,7 +138,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 35,
     height: 129,
-    textAlignVertical: "top"
+    textAlignVertical: "top",
   },
   photo: {
     // flexDirection: "row",
@@ -122,12 +158,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 17,
-    textAlign: 'center',
+    textAlign: "center",
     fontFamily: "AcuminPro-Bold",
     paddingTop: 18,
     paddingBottom: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
+    color: "#ffffff",
+    backgroundColor: "transparent",
   },
-
 });

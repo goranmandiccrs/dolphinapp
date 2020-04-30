@@ -1,12 +1,10 @@
 import { observer } from "mobx-react";
 import {
   StyleSheet,
-  Button,
   Text,
   TextInput,
   TouchableHighlight,
   View,
-  SafeAreaView,
   ScrollView,
 } from "react-native";
 
@@ -16,6 +14,7 @@ import LinearGradient from "react-native-linear-gradient";
 import React from "react";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useMst } from "../state/RootModel";
+import { PoolDropdown } from "./PoolDropdown";
 
 export const MaintenanceReport = observer(({ navigation }) => {
   const {
@@ -35,79 +34,75 @@ export const MaintenanceReport = observer(({ navigation }) => {
   } = useMst();
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text style={styles.label}>Pool Name / Address</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setPoolName(text)}
-        />
-
-        <Text style={styles.label}>Technician name</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setTechnicianName(text)}
-        />
-
-        <Text style={styles.label}>Number of bathers</Text>
-        <View style={{ marginBottom: 35 }}>
-          <View style={styles.flex}>
-            <TextInput
-              style={styles.inputIndicator}
-              onChangeText={(text) => setNumberOfBathers(parseInt(text))}
-              value={numberOfBathers?.toString()}
-            />
-
-            <View style={[styles.flex, styles.buttonGroup]}>
-              <TouchableHighlight
+    <View>
+      <ScrollView keyboardShouldPersistTaps={"handled"}>
+        <View style={styles.container}>
+          <Text style={styles.label}>Pool Name / Address</Text>
+          <PoolDropdown />
+          <Text style={styles.label}>Technician name</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setTechnicianName(text)}
+          />
+          <Text style={styles.label}>Number of bathers</Text>
+          <View style={{ marginBottom: 35 }}>
+            <View style={styles.flex}>
+              <TextInput
+                style={styles.inputIndicator}
+                onChangeText={(text) => setNumberOfBathers(parseInt(text))}
+                value={numberOfBathers?.toString()}
+              />
+              <View style={[styles.flex, styles.buttonGroup]}>
+                <TouchableHighlight
                   onPress={() => decreaseNumberValue("numberOfBathers", 1)}
                   style={[styles.indicator, styles.indicatorBorderLeft]}
                 >
-                <Text style={styles.indicatorText}> - </Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                onPress={() => increaseNumberValue("numberOfBathers", 5)}
-                style={[styles.indicator, styles.indicatorBorderRight]}
-              >
+                  <Text style={styles.indicatorText}> - </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => increaseNumberValue("numberOfBathers", 5)}
+                  style={[styles.indicator, styles.indicatorBorderRight]}
+                >
                   <Text style={styles.indicatorText}> + </Text>
-              </TouchableHighlight>
+                </TouchableHighlight>
+              </View>
             </View>
           </View>
-        </View>
 
-        <Text style={styles.label}>Date & Time</Text>
-        <Text
-          style={[
-            styles.input,
-            { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
-          ]}
-        >
-          {reportDate.toDateString()}, {time}
-        </Text>
-
-        <View style={[styles.radiosContainer, { marginBottom: 87 }]}>
-          <Text style={styles.label}>Weather?</Text>
-          <RadioButton
-            options={weatherRadioGroup.options}
-            radioGroup={weatherRadioGroup}
-          />
-        </View>
-
-        <LinearGradient
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          colors={["#5B70B8", "#7360B8"]}
-          style={styles.linearGradient}
-        >
+          <Text style={styles.label}>Date & Time</Text>
           <Text
-            style={styles.buttonText}
-            onPress={() => navigation.navigate("Cleanliness")}
+            style={[
+              styles.input,
+              { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
+            ]}
           >
-            Next
+            {reportDate.toDateString()}, {time}
           </Text>
-        </LinearGradient>
-      </View>
-    </ScrollView>
+
+          <View style={[styles.radiosContainer, { marginBottom: 87 }]}>
+            <Text style={styles.label}>Weather?</Text>
+            <RadioButton
+              options={weatherRadioGroup.options}
+              radioGroup={weatherRadioGroup}
+            />
+          </View>
+
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#5B70B8", "#7360B8"]}
+            style={styles.linearGradient}
+          >
+            <Text
+              style={styles.buttonText}
+              onPress={() => navigation.navigate("Cleanliness")}
+            >
+              Next
+            </Text>
+          </LinearGradient>
+        </View>
+      </ScrollView>
+    </View>
   );
 });
 
