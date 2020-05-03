@@ -29,6 +29,9 @@ export const LoginScreen = observer(({ navigation }) => {
       email,
       setResult,
     },
+    maintenanceReportForm: {
+      getClients,
+    }
   } = useMst();
   return (
     <ScrollView>
@@ -73,7 +76,8 @@ export const LoginScreen = observer(({ navigation }) => {
           <View
             onTouchEnd={() => {
               // console.log("clicked");
-              navigation.navigate("Note");
+              getClients();
+              navigation.navigate("MaintenanceReport");
               /* submitLogin(email, password)
                 .then(() => {
                   navigation.navigate("ReportChoice");

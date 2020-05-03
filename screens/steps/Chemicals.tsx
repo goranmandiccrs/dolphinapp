@@ -61,7 +61,22 @@ export const Chemicals = observer(({ navigation }) => {
       cyaSpa,
       cyaAdditional,
       onSubmit,
-
+      tabletChlorine,
+      liquidChlorine,
+      salt,
+      chlorine,
+      murlaticAcid,
+      cya,
+      dechlorine,
+      sodiumBicarbonate,
+      toggleTabletChlorine,
+      toggleLiquidChlorine,
+      toggleSalt,
+      toggleChlorine,
+      toggleMurlaticAcid,
+      toggleCya,
+      toggleDechlorine,
+      toggleSodiumBicarbonate,
     },
   } = useMst();
 
@@ -471,11 +486,89 @@ export const Chemicals = observer(({ navigation }) => {
           onChangeText={(text) => setCyaAdditional(text)}
           multiline={true}
         />}
-
       </View>
 
-
-      <LinearGradient
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={tabletChlorine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleTabletChlorine}
+            value={tabletChlorine}
+          />
+            <Text>tabletChlorine</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={liquidChlorine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleLiquidChlorine}
+            value={liquidChlorine}
+          />
+            <Text>liquidChlorine</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={salt ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSalt}
+            value={salt}
+          />
+            <Text>salt</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={chlorine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleChlorine}
+            value={chlorine}
+          />
+            <Text>chlorine</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={murlaticAcid ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleMurlaticAcid}
+            value={murlaticAcid}
+          />
+            <Text>murlaticAcid</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={cya ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleCya}
+            value={cya}
+          />
+            <Text>cya</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={dechlorine ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleDechlorine}
+            value={dechlorine}
+          />
+            <Text>dechlorine</Text>
+          </View>
+          <View style={[styles.flex, styles.switchWrapper]}>
+          <Switch
+            trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
+            thumbColor={sodiumBicarbonate ? "#FFFFFF" : "#FFFFFF"}
+            ios_backgroundColor="#EFEFF4"
+            onValueChange={toggleSodiumBicarbonate}
+            value={sodiumBicarbonate}
+          />
+            <Text>sodiumBicarbonate</Text>
+          </View>
+        <LinearGradient
             start={{x: 0, y: 0}} end={{x: 1, y: 0}}
             colors={['#5B70B8', '#7360B8']}
             style={styles.linearGradient}

@@ -22,7 +22,6 @@ export const MaintenanceReport = observer(({ navigation }) => {
       setPoolName,
       setTechnicianName,
       setNumberOfBathers,
-      reportDate,
       reportTime,
       setWeather,
       time,
@@ -76,7 +75,7 @@ export const MaintenanceReport = observer(({ navigation }) => {
               { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
             ]}
           >
-            {reportDate.toDateString()}, {time}
+            {reportTime.toDateString()}, {time}
           </Text>
 
           <View style={[styles.radiosContainer, { marginBottom: 87 }]}>

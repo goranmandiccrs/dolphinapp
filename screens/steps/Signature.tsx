@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import React, { useState } from "react";
+import React from "react";
 import { useMst } from "../../state/RootModel";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { ReactSignature } from "../../index";

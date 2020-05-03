@@ -18,9 +18,41 @@ export const ChemicalsModel = types
     cyaSpa: types.maybeNull(types.number),
     cyaAdditional: "",
     onSubmit: types.maybeNull(types.number),
+    tabletChlorine: false,
+    liquidChlorine: false,
+    salt: false,
+    chlorine: false,
+    murlaticAcid: false,
+    cya: false,
+    dechlorine: false,
+    sodiumBicarbonate: false,
   })
   .actions((self) => {
     return {
+      toggleTabletChlorine() {
+        self.tabletChlorine = !self.tabletChlorine;
+      },
+      toggleLiquidChlorine() {
+        self.liquidChlorine = !self.liquidChlorine;
+      },
+      toggleSalt() {
+        self.salt = !self.salt;
+      },
+      toggleChlorine() {
+        self.chlorine = !self.chlorine;
+      },
+      toggleMurlaticAcid() {
+        self.murlaticAcid = !self.murlaticAcid;
+      },
+      toggleCya() {
+        self.cya = !self.cya;
+      },
+      toggleDechlorine() {
+        self.dechlorine = !self.dechlorine;
+      },
+      toggleSodiumBicarbonate() {
+        self.sodiumBicarbonate = !self.sodiumBicarbonate;
+      },
       increaseNumberValue(value, maxValue): void {
         self[value] = Math.min(self[value] + 1, maxValue);
       },
@@ -30,11 +62,15 @@ export const ChemicalsModel = types
 
       increaseDecimalNumberValue(value, maxValue): void {
         self[value] = self[value] || 7;
-        self[value] = parseFloat(Math.min(self[value] += 0.1, maxValue).toFixed(2));
+        self[value] = parseFloat(
+          Math.min((self[value] += 0.1), maxValue).toFixed(2)
+        );
       },
       decreaseDecimalNumberValue(value, minValue): void {
         self[value] = self[value] || 7;
-        self[value] = parseFloat(Math.max(self[value] -= 0.1, minValue).toFixed(2));
+        self[value] = parseFloat(
+          Math.max((self[value] -= 0.1), minValue).toFixed(2)
+        );
       },
 
       increaseNumberValueByTen(value, maxValue): void {
@@ -110,7 +146,6 @@ export const ChemicalsModel = types
         self.cyaAdditional = cyaAdditional;
       },
 
-      onSubmit() {;
-      },
+      onSubmit() {},
     };
   });

@@ -17,7 +17,6 @@ export const MaintenanceReportModel = types
     poolName: "",
     technicianName: "",
     numberOfBathers: types.maybeNull(types.number),
-    reportDate: types.Date,
     reportTime: types.Date,
     setWeather: "",
     selectedClient: types.maybeNull(types.reference(ClientModel)),
@@ -53,7 +52,6 @@ export const MaintenanceReportModel = types
         self[value] = Math.max(self[value] - 1, minValue);
       },
       getClients() {
-        console.log("getting clients");
         const root: RootType = getRoot(self);
 
         fetch(URLs.getClients, {
@@ -88,12 +86,6 @@ export const MaintenanceReportModel = types
       },
       setNumberOfBathers(numberOfBathers: number) {
         self.numberOfBathers = numberOfBathers;
-      },
-      setReportDate(reportDate) {
-        self.reportDate = reportDate;
-      },
-      setReportTime(reportTime) {
-        self.reportTime = reportTime;
       },
       // setWeather(setWeather) {
       //   self.setWeather = setWeather;

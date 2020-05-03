@@ -1,6 +1,8 @@
 import { getRoot, types } from "mobx-state-tree";
 import { LegacyRef, useCallback } from "react";
 import { RootType } from "./RootModel";
+import { fetch } from "whatwg-fetch";
+import {headers, URLs} from "./URLs";
 
 export const SignatureModel = types
   .model("Login", {
@@ -40,86 +42,101 @@ export const SignatureModel = types
         const root: RootType = getRoot(self);
         const formData = new FormData();
 
-        // Maintenance Report
-        formData.append("poolName", root.maintenanceReportForm.poolName);
-        formData.append("technicianName", root.maintenanceReportForm.technicianName);
-        formData.append("numberOfBathers", root.maintenanceReportForm.numberOfBathers);
-        formData.append("reportTime", root.maintenanceReportForm.reportDate);
-        formData.append("reportDate", root.maintenanceReportForm.reportDate);
-        formData.append("weatherRadioGroup", root.maintenanceReportForm.weatherRadioGroup);
+        formData.append("clientID ", root.maintenanceReportForm.selectedClient?._id);
+        formData.append("general", {
+          numberOfBathers: root.maintenanceReportForm.numberOfBathers,
+          dateTime: root.maintenanceReportForm.reportTime,
+          weather: root.maintenanceReportForm.weatherRadioGroup.selectedOption?.text,
+        });
+        formData.append("cleanliness", {
+          mainPoolClarity: root.cleanlinessForm.poolClarity,
+          mainPoolClarityNotes: root.cleanlinessForm.poolClarityAdditional,
+          spaClarity: root.cleanlinessForm.spaClarity,
+          spaClariyNotes: root.cleanlinessForm.spaClarityAdditional,
+          poolBottomVacuumed: root.cleanlinessForm.poolBottomVacuumed,
+          poolBottomVacuumedNotes: root.cleanlinessForm.poolBottomVacuumedAdditional,
+          skimmerBasketsClean: root.cleanlinessForm.skimmer,
+          skimmerBasketsCleanNotes: root.cleanlinessForm.skimmerAdditional,
+          blowPoolDeckArea: root.cleanlinessForm.blowPoolDeck,
+          blowPoolDeckAreaNotes: root.cleanlinessForm.blowPoolDeckAdditional,
+          poolPumpAreaOrganized: root.cleanlinessForm.poolPump,
+          poolPumpAreaOrganizedNotes: root.cleanlinessForm.poolPumpAdditional,
+          mainPoolCleanliness: root.cleanlinessForm.mainPoolCleanliness,
+          mainPoolCleanlinessNotes: root.cleanlinessForm.mainPoolCleanlinessAdditional,
+          spaCleanliness: root.cleanlinessForm.spaCleanliness,
+          spaCleanlinessNotes: root.cleanlinessForm.spaCleanlinessAdditional,
+          hairStrainerBasketClean: root.cleanlinessForm.hairStrainer,
+          hairStrainerBasketCleanNotes: root.cleanlinessForm.hairStrainerAdditional,
+          tileLineClean: root.cleanlinessForm.tileLine,
+          tileLineCleanNotes: root.cleanlinessForm.tileLineAdditional,
+        });
+        formData.append("chemicals", {
+          chlorineMain: root.chemicalsForm.chlorineMain,
+          chlorineSpa: root.chemicalsForm.chlorineSpa,
+          chlorineNotes: root.chemicalsForm.clorineAdditional,
+          phMain: root.chemicalsForm.phMain,
+          phSpa: root.chemicalsForm.phSpa,
+          phNotes: root.chemicalsForm.phAdditional,
+          alkalityMain: root.chemicalsForm.alkalintyMain,
+          alkalitySpa: root.chemicalsForm.alkalintySpa,
+          alkalityNotes: root.chemicalsForm.alkalintyAdditional,
+          calciumMain: root.chemicalsForm.calciumMain,
+          calciumSpa: root.chemicalsForm.calciumSpa,
+          calciumNotes: root.chemicalsForm.calciumAdditional,
+          cyaMain: root.chemicalsForm.cyaMain,
+          cyaSpa: root.chemicalsForm.cyaSpa,
+          cyaNotes: root.chemicalsForm.cyaAdditional,
+          tabletChlorine: root.chemicalsForm.tabletChlorine,
+          liquidChlorine: root.chemicalsForm.liquidChlorine,
+          salt: root.chemicalsForm.salt,
+          chlorine: root.chemicalsForm.chlorine,
+          murlaticAcid: root.chemicalsForm.murlaticAcid,
+          cya: root.chemicalsForm.cya,
+          dechlorine: root.chemicalsForm.dechlorine,
+          sodiumBicarbonate: root.chemicalsForm.sodiumBicarbonate,
+        });
+        formData.append("equipment", {
+          pumpInGoodCondition: root.equipmentForm.pumpConditionRadioGroup.selectedOption?.text,
+          pumpInGoodConditionNotes: root.equipmentForm.filterConditionAdditional,
+          poolFilterInGoodCondition: root.equipmentForm.filterConditionRadioGroup.selectedOption?.text,
+          poolFilterInGoodConditionNotes: root.equipmentForm.filterConditionAdditional,
+          valveInGoodCondition: root.equipmentForm.valvesConditionRadioGroup.selectedOption?.text,
+          valveInGoodConditionNotes: root.equipmentForm.valvesConditionAdditional,
+          other: root.equipmentForm.othersRadioGroup.selectedOption?.text,
+          otherNotes: root.equipmentForm.othersAdditional,
+        })
+        formData.append("overall", {
+          chlorinatorOperational: root.overallForm.chlorinatorOperationalRadioGroup.selectedOption?.text,
+          chlorinatorOperationalNotes: root.overallForm.cartrigesWashedAdditional,
+          allGaugeWorking: root.overallForm.gaguesRadioGroup.selectedOption?.text,
+          allGaugeWorkingNotes: root.overallForm.gaguesAdditional,
+          hazmatKit: root.overallForm.hamzatRadioGroup.selectedOption?.text,
+          hazmatKitNotes: root.overallForm.hamzatAdditional,
+          msdsSheetPostage: root.overallForm.msdsRadioGroup.selectedOption?.text,
+          msdsSheetPostageNotes: root.overallForm.msdsAdditional,
+          waterLeakDetection: root.overallForm.waterLeakRadioGroup.selectedOption?.text,
+          waterLeakDetectionNotes: root.overallForm.waterLeakAdditional,
+          filterBackwashed: root.overallForm.filterBackwashedRadioGroup.selectedOption?.text,
+          filterBackwashedNotes: root.overallForm.filterBackwashedRadioGroup,
+          catridgesWashed: root.overallForm.cartrigesWashedRadioGroup.selectedOption?.text,
+          catridgesWashedNotes: root.overallForm.cartrigesWashedAdditional,
+        });
+        formData.append("note", {
+          note: root.noteForm.leaveNote
+        });
+        formData.append("signature", root.signatureForm.base64Signature);
+        formData.append("pictureBefore", root.noteForm.beforeImageBase64);
+        formData.append("pictureAfter", root.noteForm.afterImageBase64);
 
-        // Cleanliness
-        formData.append("poolClarity", root.cleanlinessForm.poolClarity);
-        formData.append("poolClarityAdditional", root.cleanlinessForm.poolClarityAdditional);
-        formData.append("spaClarity", root.cleanlinessForm.spaClarity);
-        formData.append("spaClarityAdditional", root.cleanlinessForm.spaClarityAdditional);
-        formData.append("poolBottomVacuumed", root.cleanlinessForm.poolBottomVacuumed);
-        formData.append("poolBottomVacuumedAdditional", root.cleanlinessForm.poolBottomVacuumedAdditional);
-        formData.append("skimmer", root.cleanlinessForm.skimmer);
-        formData.append("skimmerAdditional", root.cleanlinessForm.skimmerAdditional);
-        formData.append("blowPoolDeck", root.cleanlinessForm.blowPoolDeck);
-        formData.append("blowPoolDeckAdditional", root.cleanlinessForm.blowPoolDeckAdditional);
-        formData.append("poolPump", root.cleanlinessForm.poolPump);
-        formData.append("poolPumpAdditional", root.cleanlinessForm.poolPumpAdditional);
-        formData.append("mainPoolCleanliness", root.cleanlinessForm.mainPoolCleanliness);
-        formData.append("mainPoolCleanlinessAdditional", root.cleanlinessForm.mainPoolCleanlinessAdditional);
-        formData.append("spaCleanliness", root.cleanlinessForm.spaCleanliness);
-        formData.append("spaCleanlinessAdditional", root.cleanlinessForm.spaCleanlinessAdditional);
-        formData.append("hairStrainer", root.cleanlinessForm.hairStrainer);
-        formData.append("hairStrainerAdditional", root.cleanlinessForm.hairStrainerAdditional);
-        formData.append("tileLine", root.cleanlinessForm.tileLine);
-        formData.append("tileLineAdditional", root.cleanlinessForm.tileLineAdditional);
+        fetch(URLs.createMaintenanceReport, {
+          method: "POST",
+          headers: {
+            ...headers,
+            authorization: `Bearer ${root.loginForm.token}`
+          },
+          body: formData,
+        });
 
-        // Chemicals
-        formData.append("chlorineMain", root.chemicalsForm.chlorineMain);
-        formData.append("chlorineSpa", root.chemicalsForm.chlorineSpa);
-        formData.append("clorineAdditional", root.chemicalsForm.clorineAdditional);
-        formData.append("phMain", root.chemicalsForm.phMain);
-        formData.append("phSpa", root.chemicalsForm.phSpa);
-        formData.append("phAdditional", root.chemicalsForm.phAdditional);
-        formData.append("alkalintyMain", root.chemicalsForm.alkalintyMain);
-        formData.append("alkalintySpa", root.chemicalsForm.alkalintySpa);
-        formData.append("alkalintyAdditional", root.chemicalsForm.alkalintyAdditional);
-        formData.append("calciumMain", root.chemicalsForm.calciumMain);
-        formData.append("calciumSpa", root.chemicalsForm.calciumSpa);
-        formData.append("calciumAdditional", root.chemicalsForm.calciumAdditional);
-        formData.append("cyaMain", root.chemicalsForm.cyaMain);
-        formData.append("cyaSpa", root.chemicalsForm.cyaSpa);
-        formData.append("cyaAdditional", root.chemicalsForm.cyaAdditional);
-        
-        // Equipment
-        formData.append("pumpConditionRadioGroup", root.equipmentForm.pumpConditionRadioGroup);
-        formData.append("pumpConditionAdditional", root.equipmentForm.pumpConditionAdditional);
-        formData.append("filterConditionRadioGroup", root.equipmentForm.filterConditionRadioGroup);
-        formData.append("filterConditionAdditional", root.equipmentForm.filterConditionAdditional);
-        formData.append("valvesConditionRadioGroup", root.equipmentForm.valvesConditionRadioGroup);
-        formData.append("valvesConditionAdditional", root.equipmentForm.valvesConditionAdditional);
-        formData.append("filterPressureRadioGroup", root.equipmentForm.filterPressureRadioGroup);
-        formData.append("filterPressureAdditional", root.equipmentForm.filterPressureAdditional);
-        formData.append("othersRadioGroup", root.equipmentForm.othersRadioGroup);
-        formData.append("othersAdditional", root.equipmentForm.othersAdditional);
-
-        // Overall
-        formData.append("chlorinatorOperationalRadioGroup", root.overallForm.chlorinatorOperationalRadioGroup);
-        formData.append("chlorinatorOperationalAdditional", root.overallForm.chlorinatorOperationalAdditional);
-        formData.append("gaguesRadioGroup", root.overallForm.gaguesRadioGroup);
-        formData.append("gaguesAdditional", root.overallForm.gaguesAdditional);
-        formData.append("hamzatRadioGroup", root.overallForm.hamzatRadioGroup);
-        formData.append("hamzatAdditional", root.overallForm.hamzatAdditional);
-        formData.append("msdsRadioGroup", root.overallForm.msdsRadioGroup);
-        formData.append("msdsAdditional", root.overallForm.msdsAdditional);
-        formData.append("waterLeakRadioGroup", root.overallForm.waterLeakRadioGroup);
-        formData.append("waterLeakAdditional", root.overallForm.waterLeakAdditional);
-        formData.append("filterBackwashedRadioGroup", root.overallForm.filterBackwashedRadioGroup);
-        formData.append("filterBackwashedAdditional", root.overallForm.filterBackwashedAdditional);
-        formData.append("cartrigesWashedRadioGroup", root.overallForm.cartrigesWashedRadioGroup);
-        formData.append("cartrigesWashedAdditional", root.overallForm.cartrigesWashedAdditional);
-
-        // Note
-        formData.append("leaveNote", root.noteForm.leaveNote);
-        
-        // Signature
-        formData.append("savedImagePath", root.signatureForm.savedImagePath);
       },
       hideModal(navigation) {
         self.isModalVisible = false;
