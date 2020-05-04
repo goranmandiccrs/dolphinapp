@@ -2,7 +2,7 @@ import { getRoot, types } from "mobx-state-tree";
 import { LegacyRef, useCallback } from "react";
 import { RootType } from "./RootModel";
 import { fetch } from "whatwg-fetch";
-import {headers, URLs} from "./URLs";
+import { URLs } from "./URLs";
 
 
 export const SignatureModel = types
@@ -32,7 +32,6 @@ export const SignatureModel = types
       onSaveImage(image) {
         self.base64Signature = image.encoded;
         self.savedImagePath = image.pathName;
-        console.log(self.savedImagePath);
       },
       setNote(note: string) {
         self.note = note;
@@ -130,8 +129,8 @@ export const SignatureModel = types
         // console.log(data);
         formData.append("data", JSON.stringify(data));
         formData.append("signature", self.base64Signature || "");
-        /*formData.append("pictureBefore", root.noteForm.beforeImageBase64);
-        formData.append("pictureAfter", root.noteForm.afterImageBase64);*/
+        formData.append("pictureBefore", root.noteForm.beforeImageBase64);
+        formData.append("pictureAfter", root.noteForm.afterImageBase64);
 
 
         fetch(URLs.createMaintenanceReport, {

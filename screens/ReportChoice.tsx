@@ -8,17 +8,10 @@ import {
 } from "react-native";
 
 import React from "react";
-import {useMst} from "../state/RootModel";
 
 export const ReportChoice = observer(({ navigation }) => {
-  const {
-    maintenanceReportForm: {
-      getClients
-    },
-  } = useMst();
   const navigateToMaintenanceReport = () => {
     navigation.navigate("MaintenanceReport");
-    getClients();
   };
 
   return (
@@ -43,10 +36,6 @@ export const ReportChoice = observer(({ navigation }) => {
           Create service report
         </Text>
       </ImageBackground>
-     {/* <Button
-        onPress={() => navigation.navigate("Login")}
-        title="Back to login"
-      />*/}
       </View>
     </ScrollView>
   );

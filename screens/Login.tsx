@@ -57,33 +57,17 @@ export const LoginScreen = observer(({ navigation }) => {
             placeholder="Password"
           />
 
-          {/* <Button
-            onPress={() =>
-              submitLogin(email, password)
-                .then(() => {
-
-                })
-                .catch((e) => {
-                  setResult(e);
-                })
-            }
-
-            title="Login"
-          /> */}
-
           <View
             onTouchEnd={() => {
-              // console.log("clicked");
-              navigation.navigate("Signature");
-              /*   submitLogin(email, password)
+              submitLogin(email, password)
                 .then(() => {
                   getClients().then(() => {
                     navigation.navigate("ReportChoice");
-                  })
+                  });
                 })
                 .catch((e) => {
                   setResult(e);
-                });*/
+                });
             }}
           >
             <LinearGradient

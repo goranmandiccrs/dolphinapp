@@ -40,13 +40,12 @@ export const CleanlinessModel = types
       decreaseNumberValue(value, minValue): void {
         self[value] = Math.max(self[value] - 1, minValue);
       },
-      
+
       setPoolClarity(poolClarity: number) {
         self.poolClarity = poolClarity;
       },
       setPoolClarityAdditional(poolClarityAdditional: string) {
         self.poolClarityAdditional = poolClarityAdditional;
-        console.log(self.poolClarityAdditional);
       },
 
       setSpaClarity(spaClarity: number) {

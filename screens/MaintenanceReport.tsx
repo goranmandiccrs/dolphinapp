@@ -19,11 +19,8 @@ import { PoolDropdown } from "./PoolDropdown";
 export const MaintenanceReport = observer(({ navigation }) => {
   const {
     maintenanceReportForm: {
-      setPoolName,
-      setTechnicianName,
       setNumberOfBathers,
       reportTime,
-      setWeather,
       time,
       weatherRadioGroup,
       increaseNumberValue,
@@ -38,11 +35,6 @@ export const MaintenanceReport = observer(({ navigation }) => {
         <View style={styles.container}>
           <Text style={styles.label}>Pool Name / Address</Text>
           <PoolDropdown />
-          <Text style={styles.label}>Technician name</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setTechnicianName(text)}
-          />
           <Text style={styles.label}>Number of bathers</Text>
           <View style={{ marginBottom: 35 }}>
             <View style={styles.flex}>

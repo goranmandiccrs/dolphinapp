@@ -18,76 +18,108 @@ import Upload from "../assets/camera.svg";
 import Picture from "../assets/picture.svg";
 import PhotoUpload from "react-native-photo-upload";
 import LinearGradient from "react-native-linear-gradient";
+import { ServiceReportDropdown } from "./ServiceReportDropdown";
 
 export const ServiceReport = observer(({ navigation }) => {
   const {
     serviceReportForm: {
       setNote,
-      setName,
       hideModal,
       onSubmit,
-      reportDate,
       reportTime,
       time,
       isModalVisible,
       showModal,
+      setBeforeImage,
+      setAfterImage,
     },
   } = useMst();
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Text>Pool Name / Address</Text>
-        <TextInput onChangeText={(text) => setName(text)} />
+    <>
+      <ServiceReportDropdown />
+      <ScrollView>
+        <View style={styles.container}>
+          <Text>Pool Name / Address</Text>
 
-        <Text style={styles.label}>Date & Time</Text>
-        <Text
-          style={[
-            styles.input,
-            { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
-          ]}
-        >
-          {reportDate.toDateString()}, {time}
-        </Text>
-
-        <Text style={styles.label}>Leave a Note</Text>
-        <TextInput
-          style={styles.textArea}
-          onChangeText={(text) => setNote(text)}
-        />
-
-        <PhotoUpload
-          containerStyle={styles.photo}
-          photoPickerTitle={"Select photo"}
-        >
-          <Upload />
-          <Picture />
-        </PhotoUpload>
-
-        <LinearGradient
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          colors={["#5B70B8", "#7360B8"]}
-          style={styles.linearGradient}
-        >
-          <Text style={styles.buttonText} onPress={() => showModal()}>
-            Next
+          <Text style={styles.label}>Date & Time</Text>
+          <Text
+            style={[
+              styles.input,
+              { color: "rgba(85, 87, 94, 0.4)", borderRadius: 5 },
+            ]}
+          >
+            {reportTime.toDateString()}, {time}
           </Text>
-        </LinearGradient>
-      </View>
 
-      <Modal animationType="slide" transparent={false} visible={isModalVisible}>
-        <View style={{ marginTop: 22 }}>
-          <View>
-            <Text>Successfully submitted!</Text>
+          <Text style={styles.label}>Leave a Note</Text>
+          <TextInput
+            style={styles.textArea}
+            onChangeText={(text) => setNote(text)}
+          />
 
-            <TouchableHighlight onPress={() => hideModal(navigation)}>
-              <Text>Back to home</Text>
-            </TouchableHighlight>
-          </View>
+          <Text>Before</Text>
+          <PhotoUpload
+            containerStyle={styles.photo}
+            photoPickerTitle={"Select photo"}
+            onPhotoSelect={(avatar) => {
+              if (avatar) {
+                setBeforeImage(avatar);
+              }
+            }}
+          >
+            <Upload />
+            <Picture />
+          </PhotoUpload>
+          <Text>After</Text>
+          <PhotoUpload
+            containerStyle={styles.photo}
+            photoPickerTitle={"Select photo"}
+            onPhotoSelect={(avatar) => {
+              if (avatar) {
+                setAfterImage(avatar);
+              }
+            }}
+          >
+            <Upload />
+            <Picture />
+          </PhotoUpload>
+
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#5B70B8", "#7360B8"]}
+            style={styles.linearGradient}
+          >
+            <Text
+              style={styles.buttonText}
+              onPress={() => {
+                onSubmit();
+                // showModal();
+              }}
+            >
+              Submit
+            </Text>
+          </LinearGradient>
         </View>
-      </Modal>
-    </ScrollView>
+
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={isModalVisible}
+        >
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <Text>Successfully submitted!</Text>
+
+              <TouchableHighlight onPress={() => hideModal(navigation)}>
+                <Text>Back to home</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+      </ScrollView>
+    </>
   );
 });
 

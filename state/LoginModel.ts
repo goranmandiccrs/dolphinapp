@@ -9,7 +9,7 @@ export const LoginModel = types
     email: "",
     password: "",
     result: "",
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjJlM2QxYmM1Zjc5Mzk2YzlkZjQ1MiIsImlhdCI6MTU4ODYxMjIxNX0.uBDbsrvbykLH8E74RuW9BdtyIXPh4Uj4323jccF-3Fs",
+    token: "",
   })
   .actions((self) => {
     return {

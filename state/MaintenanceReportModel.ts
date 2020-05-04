@@ -61,7 +61,6 @@ export const MaintenanceReportModel = types
         }).then((response) => {
           response.json().then((result) => {
             if (!result.error) {
-              console.log(result);
               this.setClients(result.data);
             } else {
               console.log(result.error.msg);
@@ -81,14 +80,10 @@ export const MaintenanceReportModel = types
       setPoolName(poolName: string) {
         self.poolName = poolName;
       },
-      setTechnicianName(technicianName: string) {
-        self.technicianName = technicianName;
-      },
+
       setNumberOfBathers(numberOfBathers: number) {
         self.numberOfBathers = numberOfBathers;
       },
-      // setWeather(setWeather) {
-      //   self.setWeather = setWeather;
-      // },
+
     };
   });

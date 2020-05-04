@@ -3,14 +3,15 @@ import SearchableDropdown from "react-native-searchable-dropdown";
 import { observer } from "mobx-react";
 import { useMst } from "../state/RootModel";
 
-export const PoolDropdown = observer(() => {
+export const ServiceReportDropdown = observer(() => {
   const {
-    maintenanceReportForm: { clientsDataArray, selectClient, selectedClient },
+    serviceReportForm: { selectClient,  selectedClient }, maintenanceReportForm: { clientsDataArray }
   } = useMst();
   return (
     <SearchableDropdown
       onItemSelect={(client) => {
-        selectClient(client)
+        console.log(client);
+        selectClient(client);
       }}
       containerStyle={{ padding: 5 }}
       itemStyle={{
