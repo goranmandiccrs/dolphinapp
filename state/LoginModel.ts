@@ -9,7 +9,7 @@ export const LoginModel = types
     email: "",
     password: "",
     result: "",
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjJlMDA4MjcwMTYyNTY0NDY0MzQ5YSIsImlhdCI6MTU4ODIzNzcyNX0.w6b3469xOPdvkVqRU1Di7A__ZusPvHiC_9L5XW2BUZs",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjJlM2QxYmM1Zjc5Mzk2YzlkZjQ1MiIsImlhdCI6MTU4ODYxMjIxNX0.uBDbsrvbykLH8E74RuW9BdtyIXPh4Uj4323jccF-3Fs",
   })
   .actions((self) => {
     return {
@@ -38,7 +38,6 @@ export const LoginModel = types
           }).then((response) => {
             response.json().then((result) => {
               if (!result.error && result.token) {
-
                 this.setToken(result.token);
                 resolve();
               } else {

@@ -10,7 +10,6 @@ import {
   StyleSheet,
 } from "react-native";
 
-
 import React, { useState } from "react";
 import { useMst } from "../state/RootModel";
 //@ts-ignore
@@ -18,7 +17,7 @@ import Upload from "../assets/camera.svg";
 //@ts-ignore
 import Picture from "../assets/picture.svg";
 import PhotoUpload from "react-native-photo-upload";
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from "react-native-linear-gradient";
 
 export const ServiceReport = observer(({ navigation }) => {
   const {
@@ -31,15 +30,16 @@ export const ServiceReport = observer(({ navigation }) => {
       reportTime,
       time,
       isModalVisible,
+      showModal,
     },
   } = useMst();
 
   return (
     <ScrollView>
-      <View style={styles.container} >
+      <View style={styles.container}>
         <Text>Pool Name / Address</Text>
         <TextInput onChangeText={(text) => setName(text)} />
-        
+
         <Text style={styles.label}>Date & Time</Text>
         <Text
           style={[
@@ -50,31 +50,31 @@ export const ServiceReport = observer(({ navigation }) => {
           {reportDate.toDateString()}, {time}
         </Text>
 
-
         <Text style={styles.label}>Leave a Note</Text>
-        <TextInput style={styles.textArea} onChangeText={(text) => setNote(text)} />
+        <TextInput
+          style={styles.textArea}
+          onChangeText={(text) => setNote(text)}
+        />
 
-
-        <PhotoUpload containerStyle={styles.photo} photoPickerTitle={"Select photo"}>
+        <PhotoUpload
+          containerStyle={styles.photo}
+          photoPickerTitle={"Select photo"}
+        >
           <Upload />
           <Picture />
         </PhotoUpload>
 
-        <LinearGradient 
-              start={{x: 0, y: 0}} end={{x: 1, y: 0}} 
-              colors={['#5B70B8', '#7360B8']} 
-              style={styles.linearGradient}
-            >
-      
-          <Text style={styles.buttonText} 
-            onPress={() => navigation.navigate("Signature")}
-          >
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={["#5B70B8", "#7360B8"]}
+          style={styles.linearGradient}
+        >
+          <Text style={styles.buttonText} onPress={() => showModal()}>
             Next
           </Text>
         </LinearGradient>
       </View>
-
-
 
       <Modal animationType="slide" transparent={false} visible={isModalVisible}>
         <View style={{ marginTop: 22 }}>
@@ -91,17 +91,16 @@ export const ServiceReport = observer(({ navigation }) => {
   );
 });
 
-
 const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  logo: { 
-    marginTop: 50, 
+  logo: {
+    marginTop: 50,
     marginLeft: "auto",
     marginRight: "auto",
     maxWidth: 281,
-    width: "100%" 
+    width: "100%",
   },
   titleText: {
     fontSize: 40,
@@ -140,12 +139,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 17,
-    textAlign: 'center',
+    textAlign: "center",
     fontFamily: "AcuminPro-Bold",
     paddingTop: 18,
     paddingBottom: 10,
-    color: '#ffffff',
-    backgroundColor: 'transparent',
+    color: "#ffffff",
+    backgroundColor: "transparent",
   },
   link: {
     color: "#745FB8",
@@ -158,7 +157,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 35,
     height: 129,
-    textAlignVertical: "top"
+    textAlignVertical: "top",
   },
   photo: {
     // flexDirection: "row",

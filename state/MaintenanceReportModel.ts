@@ -54,7 +54,7 @@ export const MaintenanceReportModel = types
       getClients() {
         const root: RootType = getRoot(self);
 
-        fetch(URLs.getClients, {
+        return fetch(URLs.getClients, {
           headers: {
             authorization: `Bearer ${root.loginForm.token}`,
           },

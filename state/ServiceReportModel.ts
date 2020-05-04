@@ -32,13 +32,9 @@ export const ServiceReportModel = types
         self.note = note;
       },
       onSubmit() {
-        // self.isModalVisible = true;
-
-        const root: RootType = getRoot(self);
-        const formData = new FormData();
-        formData.append("note", root.serviceReportForm.note);
-
-
+      },
+      showModal() {
+        self.isModalVisible = true;
       },
       hideModal(navigation) {
         // self.isModalVisible = false;

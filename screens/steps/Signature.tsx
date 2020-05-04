@@ -8,10 +8,7 @@ import { ReactSignature } from "../../index";
 
 export const Signature = observer(({ navigation }) => {
   const {
-    signatureForm: {
-      signatureRef,
-      savedImagePath,
-    },
+    signatureForm: { signatureRef, savedImagePath, onSubmit },
   } = useMst();
 
   const styles = StyleSheet.create({
@@ -93,8 +90,13 @@ export const Signature = observer(({ navigation }) => {
         >
           <Text
             style={styles.buttonText}
-            //@ts-ignore
-            onPress={() => signatureRef.saveImage()}
+            onPress={() => {
+              //@ts-ignore
+              signatureRef.saveImage();
+              setTimeout(() => {
+                onSubmit();
+              }, 300);
+            }}
           >
             Submit
           </Text>
