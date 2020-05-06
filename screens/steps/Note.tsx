@@ -36,48 +36,61 @@ export const Note = observer(({ navigation }) => {
           onChangeText={(text) => setLeaveNote(text)}
         />
 
-        <PhotoUpload
-          containerStyle={styles.photo}
-          photoPickerTitle={"Select photo"}
-          onPhotoSelect={(avatar) => {
-            if (avatar) {
-              setBeforeImage(avatar);
-            }
-          }}
-        >
-          <Upload />
-          <Picture />
-        </PhotoUpload>
+        <View style={styles.flex}>
+          <View style={[styles.uploadWrapper, {marginRight: 5},]}>
+            <Text style={styles.label}>Before</Text>
+            <PhotoUpload
+              containerStyle={styles.photo}
+              photoPickerTitle={"Select photo"}
+              onPhotoSelect={(avatar) => {
+                if (avatar) {
+                  setBeforeImage(avatar);
+                }
+              }}
+            >
+              <View style={styles.flex}>
+                <Upload />
+                <Picture style={{marginLeft: 6,}}/>
+              </View>
+            
+            {!!beforeImageBase64 && (
+              <Image
+                style={styles.logo}
+                source={{
+                  uri: `data:image/png;base64,${beforeImageBase64}`,
+                }}
+              />
+            )}
+            </PhotoUpload>
+          </View>
 
-        {!!beforeImageBase64 && (
-          <Image
-            style={styles.logo}
-            source={{
-              uri: `data:image/png;base64,${beforeImageBase64}`,
-            }}
-          />
-        )}
-        <PhotoUpload
-          containerStyle={styles.photo}
-          photoPickerTitle={"Select photo"}
-          onPhotoSelect={(avatar) => {
-            if (avatar) {
-              setAfterImage(avatar);
-            }
-          }}
-        >
-          <Upload />
-          <Picture />
-        </PhotoUpload>
+          <View style={[styles.uploadWrapper, {marginLeft: 5},]}>
+          <Text style={styles.label}>After</Text>
+            <PhotoUpload
+              containerStyle={styles.photo}
+              photoPickerTitle={"Select photo"}
+              onPhotoSelect={(avatar) => {
+                if (avatar) {
+                  setAfterImage(avatar);
+                }
+              }}
+            >
+              <View style={styles.flex}>
+                <Upload />
+                <Picture style={{marginLeft: 6,}}/>
+              </View>
+              {!!afterImageBase64 && (
+                <Image
+                  style={styles.logo}
+                  source={{
+                    uri: `data:image/png;base64,${afterImageBase64}`,
+                  }}
+                />
+              )}
+            </PhotoUpload>
+          </View>
+        </View>
 
-        {!!afterImageBase64 && (
-          <Image
-            style={styles.logo}
-            source={{
-              uri: `data:image/png;base64,${afterImageBase64}`,
-            }}
-          />
-        )}
 
         <LinearGradient
           start={{ x: 0, y: 0 }}
@@ -99,17 +112,20 @@ export const Note = observer(({ navigation }) => {
 
 const styles = StyleSheet.create({
   flex: {
-    // flex: 1,
     flexDirection: "row",
-    // justifyContent: 'center',
-    // alignItems: 'stretch'
+    alignItems: "center",
+  },
+  uploadWrapper: {
+    flex: 1,
   },
   logo: {
     width: 66,
     height: 58,
+    
   },
   container: {
     padding: 20,
+    paddingTop: 56,
     backgroundColor: "#EFEFF4",
   },
   scrollView: {
@@ -136,18 +152,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#D3D9EB",
     padding: 12,
-    marginBottom: 35,
+    marginBottom: 15,
     height: 129,
     textAlignVertical: "top",
   },
   photo: {
-    // flexDirection: "row",
-    // flex: 1,
-    // width: 100,
     height: 100,
-    // backgroundColor: "#fff",
+    backgroundColor: "#fff",
     borderWidth: 1,
     borderColor: "#D3D9EB",
+    borderRadius: 10,
   },
   linearGradient: {
     marginTop: 31,

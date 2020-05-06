@@ -12,28 +12,31 @@ export const PoolDropdown = observer(() => {
       onItemSelect={(client) => {
         selectClient(client)
       }}
-      containerStyle={{ padding: 5 }}
+      containerStyle={{ marginBottom: 35 }}
       itemStyle={{
-        padding: 10,
-        marginTop: 2,
-        backgroundColor: "#ddd",
-        borderColor: "#bbb",
+        borderRadius: 8,
+        backgroundColor: "white",
         borderWidth: 1,
-        borderRadius: 5,
+        borderColor: "#D3D9EB",
+        padding: 12,
+        overflow: "hidden",
       }}
-      itemTextStyle={{ color: "#222" }}
+      itemTextStyle={{ color: "#55575E" }}
       itemsContainerStyle={{ maxHeight: 140 }}
       items={clientsDataArray}
       resetValue={false}
       value={selectedClient?.firstName || ""}
       textInputProps={{
-        placeholder: "placeholder",
+        placeholder: "Search select Pool Name / Address",
         underlineColorAndroid: "transparent",
         style: {
-          padding: 12,
+          borderRadius: 8,
+          backgroundColor: "white",
           borderWidth: 1,
-          borderColor: "#ccc",
-          borderRadius: 5,
+          borderColor: "#D3D9EB",
+          padding: 12,
+          flex: 1,
+          marginRight: 11,
         },
         onTextChange: (text) => console.log(text),
       }}

@@ -50,10 +50,13 @@ export const LoginScreen = observer(({ navigation }) => {
             onChangeText={(text) => setEmail(text)}
             style={styles.input}
             placeholder="Email"
+            autoCapitalize="none"
           />
           <TextInput
             onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true}
             style={styles.input}
+            autoCapitalize="none"
             placeholder="Password"
           />
 

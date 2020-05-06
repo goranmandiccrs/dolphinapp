@@ -56,8 +56,8 @@ export const ServiceReportModel = types
         self.isModalVisible = true;
       },
       hideModal(navigation) {
-        // self.isModalVisible = false;
-        // navigation.navigate("ReportChoice");
+        self.isModalVisible = false;
+        navigation.navigate("ReportChoice");
       },
       setBeforeImage(uploadImage) {
         self.beforeImageBase64 = uploadImage;

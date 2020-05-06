@@ -42,6 +42,7 @@ export const MaintenanceReport = observer(({ navigation }) => {
                 style={styles.inputIndicator}
                 onChangeText={(text) => setNumberOfBathers(parseInt(text))}
                 value={numberOfBathers?.toString()}
+                placeholder="EX. 1"
               />
               <View style={[styles.flex, styles.buttonGroup]}>
                 <TouchableHighlight

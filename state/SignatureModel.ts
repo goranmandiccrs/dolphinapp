@@ -144,6 +144,9 @@ export const SignatureModel = types
           console.log("ERROR:", e);
         });
       },
+      showModal() {
+        self.isModalVisible = true;
+      },
       hideModal(navigation) {
         self.isModalVisible = false;
         navigation.navigate("ReportChoice");

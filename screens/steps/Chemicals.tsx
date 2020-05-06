@@ -488,6 +488,7 @@ export const Chemicals = observer(({ navigation }) => {
         />}
       </View>
 
+          <Text style={styles.label}>System used</Text>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
             trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
@@ -496,7 +497,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleTabletChlorine}
             value={tabletChlorine}
           />
-            <Text>tabletChlorine</Text>
+            <Text>Tablet Chlorine</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -506,7 +507,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleLiquidChlorine}
             value={liquidChlorine}
           />
-            <Text>liquidChlorine</Text>
+            <Text>Liquid chlroine</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -516,8 +517,9 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleSalt}
             value={salt}
           />
-            <Text>salt</Text>
+            <Text>Salt</Text>
           </View>
+          <Text style={styles.label}>Chemicals added today</Text>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
             trackColor={{ false: "#E5E5EA", true: "#745FB8" }}
@@ -526,7 +528,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleChlorine}
             value={chlorine}
           />
-            <Text>chlorine</Text>
+            <Text>Chlorine</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -536,7 +538,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleMurlaticAcid}
             value={murlaticAcid}
           />
-            <Text>murlaticAcid</Text>
+            <Text>Murlatic Acid</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -546,7 +548,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleCya}
             value={cya}
           />
-            <Text>cya</Text>
+            <Text>CYA</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -556,7 +558,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleDechlorine}
             value={dechlorine}
           />
-            <Text>dechlorine</Text>
+            <Text>Dechlorine</Text>
           </View>
           <View style={[styles.flex, styles.switchWrapper]}>
           <Switch
@@ -566,7 +568,7 @@ export const Chemicals = observer(({ navigation }) => {
             onValueChange={toggleSodiumBicarbonate}
             value={sodiumBicarbonate}
           />
-            <Text>sodiumBicarbonate</Text>
+            <Text>Sodium Bicarbonate</Text>
           </View>
         <LinearGradient
             start={{x: 0, y: 0}} end={{x: 1, y: 0}}

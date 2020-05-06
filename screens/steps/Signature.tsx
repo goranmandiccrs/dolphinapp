@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, Modal, TouchableHighlight } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import React from "react";
 import { useMst } from "../../state/RootModel";
@@ -8,7 +8,7 @@ import { ReactSignature } from "../../index";
 
 export const Signature = observer(({ navigation }) => {
   const {
-    signatureForm: { signatureRef, savedImagePath, onSubmit },
+    signatureForm: { signatureRef, savedImagePath, onSubmit, isModalVisible, showModal, hideModal },
   } = useMst();
 
   const styles = StyleSheet.create({
@@ -73,6 +73,47 @@ export const Signature = observer(({ navigation }) => {
       color: "#ffffff",
       backgroundColor: "transparent",
     },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22,
+      backgroundColor: "rgba(196,196, 196, 0.7)",
+      // opacity: .7,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 8,
+      width: "90%",
+      paddingTop: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
+    },
+    openButton: {
+      borderRadius: 10,
+      padding: 10,
+      elevation: 2,
+      width: "100%",
+      borderTopWidth: 0.5,
+      borderTopColor: "rgba(000,000, 000, .2)",
+    },
+    textStyle: {
+      color: "#745FB8",
+      textAlign: "center",
+      fontFamily: "AcuminPro-Bold",
+    },
+    modalText: {
+      marginBottom: 22,
+      textAlign: "center"
+    }
   });
 
   return (
@@ -96,12 +137,29 @@ export const Signature = observer(({ navigation }) => {
               setTimeout(() => {
                 onSubmit();
               }, 300);
+              showModal();
             }}
           >
             Submit
           </Text>
         </LinearGradient>
       </View>
+
+      <Modal
+          animationType="fade"
+          transparent={true}
+          visible={isModalVisible}
+        >
+           <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Your report has been submitted successfully!</Text>
+
+              <TouchableHighlight style={styles.openButton} onPress={() => hideModal(navigation)}>
+                <Text style={styles.textStyle}>Back to home</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
     </ScrollView>
   );
 });
