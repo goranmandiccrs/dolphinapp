@@ -40,7 +40,7 @@ export const ServiceReport = observer(({ navigation }) => {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={"handled"}>
         <View style={styles.container}>
           <Text style={styles.label}>Pool Name / Address</Text>
           <ServiceReportDropdown />

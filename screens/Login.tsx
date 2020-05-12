@@ -8,6 +8,10 @@ import {
   TextInput,
   View,
   ImageBackground,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
+  Platform,
 } from "react-native";
 
 //@ts-ignore
@@ -32,62 +36,70 @@ export const LoginScreen = observer(({ navigation }) => {
     maintenanceReportForm: { getClients },
   } = useMst();
   return (
-    <ScrollView>
-      <ImageBackground
-        source={require("../assets/login-bg.jpg")}
-        style={{ width: "100%", height: "100%" }}
-      >
-        <View style={styles.container}>
-          <Logo style={styles.logo} />
-
-          <Text style={styles.titleText}>Welcome to our field report app.</Text>
-
-          <Text style={styles.baseText}>
-            Enter your email address and password to access your account.
-          </Text>
-
-          <TextInput
-            onChangeText={(text) => setEmail(text)}
-            style={styles.input}
-            placeholder="Email"
-            autoCapitalize="none"
-          />
-          <TextInput
-            onChangeText={(text) => setPassword(text)}
-            secureTextEntry={true}
-            style={styles.input}
-            autoCapitalize="none"
-            placeholder="Password"
-          />
-
-          <View
-            onTouchEnd={() => {
-              submitLogin(email, password)
-                .then(() => {
-                  getClients().then(() => {
-                    navigation.navigate("ReportChoice");
-                  });
-                })
-                .catch((e) => {
-                  setResult(e);
-                });
-            }}
-          >
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              colors={["#5B70B8", "#7360B8"]}
-              style={styles.linearGradient}
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView>
+            <ImageBackground
+              source={require("../assets/login-bg.jpg")}
+              style={{ width: "100%", height: "100%" }}
             >
-              <Text style={styles.buttonText}>Login</Text>
-            </LinearGradient>
-          </View>
+              <View style={styles.container}>
+                <Logo style={styles.logo} />
 
-          {/* <Button onPress={() => {}} title="Contact us" color="#745FB8" /> */}
-          {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
-        </View>
-      </ImageBackground>
-    </ScrollView>
+                <Text style={styles.titleText}>Welcome to our field report app.</Text>
+
+                <Text style={styles.baseText}>
+                  Enter your email address and password to access your account.
+                </Text>
+
+                <TextInput
+                  onChangeText={(text) => setEmail(text)}
+                  style={styles.input}
+                  placeholder="Email"
+                  autoCapitalize="none"
+                />
+                <TextInput
+                  onChangeText={(text) => setPassword(text)}
+                  secureTextEntry={true}
+                  style={styles.input}
+                  autoCapitalize="none"
+                  placeholder="Password"
+                />
+
+                <View
+                  onTouchEnd={() => {
+                    submitLogin(email, password)
+                      .then(() => {
+                        getClients().then(() => {
+                          navigation.navigate("ReportChoice");
+                        });
+                      })
+                      .catch((e) => {
+                        setResult(e);
+                      });
+                  }}
+                >
+                  <LinearGradient
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    colors={["#5B70B8", "#7360B8"]}
+                    style={styles.linearGradient}
+                  >
+                    <Text style={styles.buttonText}>Login</Text>
+                  </LinearGradient>
+                </View>
+
+                {/* <Button onPress={() => {}} title="Contact us" color="#745FB8" /> */}
+                {/* <GradientButton text="Purple Violet" width='90%' purpleViolet impact /> */}
+              </View>
+            </ImageBackground>
+          </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+ 
   );
 });
 
